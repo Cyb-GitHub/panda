@@ -1,0 +1,195 @@
+.private-message-desc {
+	padding: 5px 10px;
+	border-bottom: 2px solid black;
+	border-color: black !important;
+}
+
+.private-message-delete {
+	display: flex;
+	justify-content: right;
+
+	align-items: flex-end;
+	border-bottom: 2px solid black;
+	border-color: black !important;
+
+}
+.private-message-delete-button {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: 30%;
+	background: url("@/static/images/1x/button-mid.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	justify-content: right;
+	display: flex;
+}
+
+.private-message-item {
+	padding: 5px 10px;
+	display: flex;
+	align-items: center;
+	height: 40px;
+	border-bottom: 2px solid black;
+	border-color: black !important;
+}
+
+.private-message-icons {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	justify-content: right;
+	display: flex;
+}
+
+.email-img {
+	height: 20px !important;
+	width: 30px;
+}
+
+.private-message-pin {
+}
+
+.pin-img {
+	height: 20px !important;
+	width: 30px;
+}
+
+
+.private-message-content {
+	
+}
+
+.private-message-content-return-button {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: 70px;
+	background: url("@/static/images/1x/button-mid.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	justify-content: right;
+	display: flex;
+}
+
+.private-message-content-button {
+	height: 40px;
+	display: flex;
+	align-items: center;
+	
+	border-bottom: 2px solid black;
+	border-color: black !important;
+	padding-left: 10px;
+}
+
+.private-message-content-title {
+	display: flex;
+	align-items: center;
+	
+	border-bottom: 2px solid black;
+	border-color: black !important;
+	height: 40px;
+	padding-left: 10px;
+}
+
+.private-message-content-body {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right: 10px;
+	padding-left: 10px;
+}
+
+.private-message-content-footer {
+	
+}
+
+.private-message-title-text {
+	
+}
+
+.private-message-title-time {
+	font-size: x-small;
+	padding-left: 10px;
+}
+
+.private-message-index {
+}
+
+.private-message-list {
+}
+
+.private-message-item-panel {
+
+}
+
+.private-message-content-time {
+	display: flex;
+	justify-content: right;
+	
+	padding: 5px 10px;
+}
+
+.private-message-content-attach {
+	padding: 5px 10px;
+}
+
+.private-message-content-attach-title {
+	padding: 10px 0;
+}
+
+.private-message-content-attach-body {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+
+.private-message-get-bonus-button {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: 90px;
+	height: 30px;
+	background: url("@/static/images/1x/button-mid.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	justify-content: right;
+	display: flex;
+}
+
+.private-message-bamboo-img {
+	height: 43px !important;
+	width: 43px;
+	padding-right: 10px;
+}
+
+.private-message-content-bonus {
+	padding-right: 10px;
+}
+
+.private-message-icons-red-point {
+	background: red;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    margin-left: -6px;
+    margin-top: -4px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

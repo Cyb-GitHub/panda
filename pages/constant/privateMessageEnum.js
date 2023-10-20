@@ -1,0 +1,14 @@
+const PRIVATE_MESSAGE_STATUS = {
+	UNREAD: 1,
+	READ: 2,
+};
+
+const PRIVATE_MESSAGE_TYPE = {
+	NOTIFY: 1,
+	AWARD: 2,
+}
+
+export default {
+	PRIVATE_MESSAGE_STATUS,
+	PRIVATE_MESSAGE_TYPE,
+}

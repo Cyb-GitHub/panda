@@ -1,0 +1,47 @@
+.voteHistoryPanel {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: transparent !important;
+	
+	
+	.voteWeightInfoPanel {
+		border-bottom: 2px solid black;
+		border-color: black !important;
+		
+		.voteWeightInfo {
+			padding: 0 10px 5px 10px;
+		}
+	}
+}
+
+.vote-list /deep/ .uni-collapse  {
+	background-color: transparent !important;
+}
+
+.vote-list /deep/ .uni-collapse  .uni-collapse-item .uni-collapse-item__wrap {
+	background-color: transparent !important;
+}
+
+.vote-item-title {
+	padding-left: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border: none;
+}
+
+.vote-content-content {
+	padding: 5px 10px;
+}
+
+.vote-content-count {
+	padding: 5px 10px;
+	.vote-content-count-item {
+		padding: 2px 0px;
+		
+	}
+}
+
+.vote-content-end-time {
+	padding: 10px 10px;
+	text-align: right;
+}

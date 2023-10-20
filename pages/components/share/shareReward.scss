@@ -1,0 +1,90 @@
+.share-reward-basic {
+		width: 100%;
+		height: 20%;
+		min-height: 50px;
+		padding: 10px 10px 10px 10px;
+		display: inline-flex;
+		align-items: center;
+		border-bottom: 1px black solid;
+		color: #d8d8d8;
+}
+
+.share-rewards-list {
+	width: 100%;
+	display: block;
+	align-items: center;
+	font-size: 12px !important;
+	color: #d8d8d8;
+}
+
+.share-reward-icon {
+		width: 50px;
+		height: 50px;
+}
+
+.share-reward-name-txt {
+		padding: 0px 5px 0px 5px;
+}
+
+.share-reward-name-col {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		padding: 2px 0px 2px 0px;
+		color: white;
+}
+
+.share-rewards-filter {
+		width: 100%;
+		height: 20%;
+		min-height: 50px;
+		padding: 10px 0px 10px 0px;
+		align-items: center;
+		border-bottom: 1px black solid;
+}
+
+.share-rewards-account {
+		width: 100%;
+		height: 20%;
+		min-height: 50px;
+		padding: 10px 0px 10px 0px;
+		align-items: center;
+		border-bottom: 1px black solid;
+		
+		.share-rewards-account-name {
+			padding-right: 10px;
+			padding-left: 10px;
+			font-size: 18px;
+		}
+		
+		.share-rewards-account-uid {
+			padding-right: 10px;
+		}
+}
+
+.share-reward-item {
+		width: 100%;
+		height: 20%;
+		min-height: 50px;
+		padding: 10px 5px 10px 5px;
+		align-items: center;
+		border-bottom: 1px black solid;
+		
+}
+
+.share-reward-detail-row {
+	padding: 3px;
+	font-weight: bolder;
+}
+
+.share-reard-item-detail {
+	display: inline-flex;
+	
+	>span {
+			padding: 0px 5px 0px 0px;
+	}
+}
+
+.highLight {
+		color: green;
+}

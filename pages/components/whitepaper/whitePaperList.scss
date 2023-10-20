@@ -1,0 +1,54 @@
+.white-paper /deep/ .uni-section {
+	background-color: transparent !important;
+}
+
+.white-paper /deep/ .uni-section .uni-section-header .uni-section-header__decoration {
+	background-color: transparent;
+	margin-right: 0px;
+	width: 0px;
+	height: 0x;
+}
+
+.white-paper /deep/ .uni-section .uni-section-content .uni-collapse {
+	background-color: transparent !important;
+}
+
+.white-paper /deep/ .uni-section .uni-section-content .uni-collapse .uni-collapse-item .uni-collapse-item__wrap {
+	background-color: transparent !important;
+}
+
+.white-paper /deep/ .uni-section .uni-section-header {
+	border: none;
+	border-bottom: 2px solid black;
+	border-color: black !important;
+}
+
+.white-paper-item-title {
+	padding-left: 10px;
+	border: none;
+}
+
+.white-papar-collpase {
+	border: none;
+	border-bottom: 2px solid black;
+	border-color: black !important;
+}
+
+.white-papar-collpase /deep/ .uni-collapse-item__title {
+	border: none;
+	border-bottom: 0px solid black;
+	border-color: black !important;
+}
+
+.white-papar-collpase  /deep/ .uni-collapse-item__wrap .uni-collapse-item__wrap-content {
+	border-bottom-style: none;
+}
+
+.white-paper-bottom {
+	text-align: center;
+	padding: 10px;
+}
+
+.white-paper-bottom-loading {
+	cursor: pointer;
+}
