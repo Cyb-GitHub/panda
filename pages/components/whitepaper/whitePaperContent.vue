@@ -4,6 +4,9 @@
 		    <div>
 	    	    <p v-html="content"></p>
 	        </div>
+			<div class="white-paper-timestamp" style="margin-bottom: -12px;">
+			  Lucky Panda
+			</div>
 	        <div class="white-paper-timestamp">
 			  {{formateTime}}
     	    </div>
