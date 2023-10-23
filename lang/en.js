@@ -473,10 +473,10 @@ export default {
 		noQualificationInfo: '{amount} lpgs left to get qualification',
 		qualificationInfo: 'You get {amount} lpgs this month. {task} tasks left to get {type} qualification',
 		desc: '<h3>获得共建奖励资格说明:</h3>\
-			   玩家当月社区钱包内持有大于或等于3000LPG代币，\
+			   玩家当月社区钱包内持有大于或等于1000LPG代币，\
 			   且持续持有满整个月份，\
 			   (每月1日23时59分开始至最后1日23时59分止)在此期间，无论是否有减持或增持LPG代币，\
-			   只需不低于3000枚LPG代币，即可获得当月共建奖励资格。\
+			   只需不低于1000枚LPG代币，即可获得当月共建奖励资格。\
 			   按达到条件当天实际持有代币数量，\
 			   以100的整倍数计算，以竹子形式于次月1日发放。',
 		X2Desc: '<h3>获得共建奖励x2资格说明:</h3>\n当月您获得共建奖励发放资格，\
