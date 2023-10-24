@@ -19,7 +19,7 @@ export default {
 		lpg: 'LPG',
 		bamboo: '竹子',
 		usdt: 'USDT',
-		raffle: '抽奖券',
+		raffle: '抽獎券',
 		airDrop: '空投券',
 	},
 	index: {
@@ -55,7 +55,7 @@ export default {
 		voteHistory: '投票歷史',
 		usdtTxt: 'USDT',
 		bambooTxt: '竹子',
-		ticketTxt: '抽奖券',
+		ticketTxt: '抽獎券',
 		lpgTxt: '幸运熊猫币(LPG)',
 	},
 	common: {
