@@ -66,6 +66,9 @@
 						}, {
 							compName: 'accountTransactions',
 							child: {},
+						}, {
+							compName: 'ticketDataCenter',
+							child: {},
 						},
 					],
 					key: ['1-0','1-1','1-2','1-3']

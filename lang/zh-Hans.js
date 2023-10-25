@@ -296,7 +296,7 @@ export default {
 	},
 	privateMessage: {
 		desc: '您有{num}封新邮件',
-		delete: '刪除已读邮件',
+		delete: '删除已读邮件',
 		title: '标题：{title} 通知',
 		return: '返回',
 		deleteConfirm: '删除',

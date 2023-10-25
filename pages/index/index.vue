@@ -63,6 +63,7 @@
 	import ticketHistory from '@/pages/components/tickets/ticketHistory.vue'
 	import allTicketRecords from '@/pages/components/tickets/allTicketRecords.vue'
 	import ticketLotteryRecorders from '@/pages/components/tickets/ticketLotteryRecorders.vue'
+	import ticketDataCenter from '@/pages/components/tickets/ticketDataCenter.vue'
 	import handleFeeding from '@/pages/components/basic/handleFeeding.vue'
 	import vote from '@/pages/components/vote/vote.vue'
 	import voteHistory from '@/pages/components/vote/voteHistory.vue'
@@ -107,7 +108,8 @@
 						this.$t('index.luckyRaflle'),
 						this.$t('index.raffleHistory'),
 						this.$t('index.myRaffle'),
-						this.$t('index.myRaffleTicket')],
+						this.$t('index.myRaffleTicket'),
+						this.$t('index.dataCenter')],
 					'handleFeeding': [this.$t('index.feeding')],
 					'3': [
 						this.$t('index.vote'),
@@ -146,6 +148,7 @@
 			ticketHistory,
 			allTicketRecords,
 			ticketLotteryRecorders,
+			ticketDataCenter,
 			handleFeeding,
 			vote,
 			voteHistory,
