@@ -28,87 +28,189 @@
 					<text class="dataTopLeftItem">获得共建奖励x3LPG数量:123456</text>
 				</view>
 			</view>
-			<view class="leftDataBot">
-				<view class="tableTh">
-					<view class="th" style="width: 145rpx;"><text>支付时间</text></view>
-					<view class="th" style="width: 145rpx;"><text>昵称</text></view>
-					<view class="th" style="width: 250rpx;"><text>选号</text></view>
-					<view class="th" style="width: 180rpx;border-right: 1px solid #666666;"><text>支付抽奖券数量</text></view>
-				</view>
-				<scroll-view scroll-y="true" style="width: 718rpx; height: 400rpx;border: 1px solid #666666;">
-					<view v-for="(item, index) in tableData" class="tableList" :key="index">
-						<view class="td" style="width: 145rpx;">{{item.a}}</view>
-						<view class="td" style="width: 145rpx;">{{item.b}}</view>
-						<view class="td" style="width: 250rpx;">{{item.c}}</view>
-						<view class="td" style="width: 180rpx;">{{item.d}}</view>
-					</view>
-				</scroll-view>
-			</view>
-			<view class="seeMore">
-				<text>查看更多</text>
-			</view>
+			<data-center-table :tableData="nowData" height="400rpx" @getMore="nowTableGetMore"></data-center-table>
 		</view>
 		<view v-if="select=='R'" class="rightData">
-			<text>right</text>
+			<!-- 历史数据-期数列表 -->
+			<!-- <view class="hdTable1">
+				<view class="tableRow" v-for="i in 3" :key="i">
+					<view class="tableRowL">
+						<text class="date">2023/9/20</text>
+						<text class="num">第{{i}}期</text>
+					</view>
+					<view class="tableRowR" @click="getTabDetail(i)">
+						<text>+</text>
+					</view>
+				</view>
+			</view> -->
+			
+			<!-- 历史数据-期数详情 -->
+			<view class="hdTable2Box">
+				<view class="hdTable2Top">
+					<view class="hdTable2TopL">
+						<text class="goTable1"></text>
+					</view>
+					<view class="hdTable2TopR">
+						<text>期数：第20期</text>
+						<text>开奖号码：01.02.03.04.05</text>
+					</view>
+				</view>
+				<view class="hdTable2">
+					<view class="table-row">
+						<view class="table-col">
+							<view class="table-col-top">
+								<text>支付抽奖券</text>
+								<text>总数量</text>
+								<view class="sanjiao"></view>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+						<view class="table-col table-col-min">
+							<view class="table-col-top">
+								<text>1等奖</text>
+								<text>奖励总数</text>
+								<view class="sanjiao"></view>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+						<view class="table-col">
+							<view class="table-col-top">
+								<text>2等奖</text>
+								<text>奖励总数</text>
+								<view class="sanjiao"></view>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+					</view>
+					<view class="table-row">
+						<view class="table-col">
+							<view class="table-col-top">
+								<text>3等奖</text>
+								<text>奖励总数</text>
+								<view class="sanjiao"></view>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+						<view class="table-col table-col-min">
+							<view class="table-col-top">
+								<text>4等奖</text>
+								<text>奖励总数</text>
+								<view class="sanjiao"></view>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+						<view class="table-col">
+							<view class="table-col-top">
+								<text>本期余额</text>
+								<view class="sanjiao"></view>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+					</view>
+					<view class="table-row">
+						<view class="table-col">
+							<view class="table-col-top">
+								<text>上期余额</text>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+						<view class="table-col table-col-min">
+							<view class="table-col-top">
+								<text>兑换LPG的</text>
+								<text>竹子数量</text>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+						<view class="table-col">
+							<view class="table-col-top">
+								<text>共建奖励等</text>
+								<text>支付数量</text>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+					</view>
+					<view class="table-row">
+						<view class="table-col">
+							<view class="table-col-top">
+								<text>总余额</text>
+								<view class="sanjiao"></view>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+						<view class="table-col table-col-min">
+							<view class="table-col-top">
+								<text>获得共建奖励的</text>
+								<text>LPG数量</text>
+								<view class="sanjiao"></view>
+							</view>
+							<view class="table-col-bot">
+								<text>111</text>
+							</view>
+						</view>
+						<view class="table-col">
+							<view class="table-col-top">
+								<text></text>
+							</view>
+							<view class="table-col-bot">
+								<text></text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import dataCenterTable from '../tickets/dataCenterTable.vue'
 	export default {
+		components: {
+			dataCenterTable
+		},
 		data() {
 			return {
 				name: 'ticketDataCenter',
 				select: 'L',
-				tableData: [
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'},
-					{a:'1', b:'2', c:'3', d:'4'}
+				nowData: [
+					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
+					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
+					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
+					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
+					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
+					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
+					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
+					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'}
 				]
 			}
 		},
 		methods: {
+			getTabDetail(i) {
+				console.log('---', i)
+			},
+			nowTableGetMore(bol) {
+				console.log('即时数据more->', bol)
+			},
 			selectNav(nav) {
 				this.select = nav
 			}
@@ -183,41 +285,148 @@
 			margin: 6rpx 0;
 		}
 	}
-	.leftDataBot{
-		width: 720rpx;
-		margin-left: 15rpx;
-		margin-top: 10rpx;
-		.tableTh{
+}
+.rightData{
+	width: 100%;
+	height: 720rpx;
+	display: flex;
+	flex-direction: column;
+	color: #ffffff;
+	padding: 32rpx;
+	.hdTable1{
+		width: 100%;
+		height: 100%;
+		overflow-y: scroll;
+		border-top: 2rpx solid #666666;
+		.tableRow{
+			width: 100%;
+			height: 80rpx;
+			border-left: 2rpx solid #666666;
+			border-right: 2rpx solid #666666;
+			border-bottom: 2rpx solid #666666;
 			display: flex;
-			width: 720rpx;
-			.th{
+			justify-content: space-between;
+			align-items: center;
+			.tableRowL{
+				width: 400rpx;
+				height: 80rpx;
 				display: flex;
-				justify-content: center;
 				align-items: center;
-				height: 50rpx;
-				font-size: 12px;
-				border-top: 1px solid #666666;
-				border-left: 1px solid #666666;
+				color: #ffffff;
+				.date{
+					width: 200rpx;
+					height: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 28rpx;
+				}
+				.num{
+					width: 200rpx;
+					height: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 28rpx;
+				}
 			}
-		}
-		.tableList{
-			display: flex;
-			.td{
-				height: 40rpx;
+			.tableRowR{
+				width: 48rpx;
+				height: 48rpx;
+				border-radius: 50%;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				border-bottom: 1px solid #666666;
+				color: #ffffff;
+				font-size: 28rpx;
+				margin-right: 24rpx;
+				background-color: #333333;
 			}
 		}
 	}
-	.seeMore{
+	.hdTable2Box{
 		width: 100%;
-		height: 60rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #eeeeee;
+		height: 100%;
+		.hdTable2Top{
+			width: 100%;
+			height: 120rpx;
+			display: flex;
+			align-items: center;
+			.hdTable2TopL{
+				width: 60rpx;
+				height: 120rpx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-right: 30rpx;
+				.goTable1{
+					width: 48rpx;
+					height: 60rpx;
+					background-color: #666666;
+					clip-path: polygon(100% 0, 30% 50%, 100% 100%);
+				}
+			}
+			.hdTable2TopR{
+				height: 120rpx;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				color: #FFFFFF;
+				font-size: 14px;
+			}
+		}
+		.hdTable2{
+			width: 100%;
+			height: calc(100% - 130rpx);
+			margin-top: 10rpx;
+			border-top: 2rpx solid #666666;
+			border-left: 2rpx solid #666666;
+			border-right: 2rpx solid #666666;
+			display: flex;
+			flex-direction: column;
+			.table-row{
+				width: 100%;
+				height: 25%;
+				display: flex;
+				.table-col-min{
+					border-left: 2rpx solid #666666;
+					border-right: 2rpx solid #666666;
+				}
+				.table-col{
+					display: flex;
+					flex-direction: column;
+					border-bottom: 2rpx solid #666666;
+					width: 33.33%;
+					.table-col-top{
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						width: 100%;
+						height: 60%;
+						font-size: 14px;
+						border-bottom: 2rpx solid #666666;
+						position: relative;
+						.sanjiao{
+							position: absolute;
+							right: 0;
+							bottom: 0;
+							width: 36rpx;
+							height: 36rpx;
+							background-color: limegreen;
+							clip-path: polygon(100% 0,0 100%,100% 100%);
+						}
+					}
+					.table-col-bot{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: 100%;
+						height: 40%;
+					}
+				}
+			}
+		}
 	}
 }
 </style>
