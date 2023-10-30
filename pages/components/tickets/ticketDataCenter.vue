@@ -32,23 +32,23 @@
 		</view>
 		<view v-if="select=='R'" class="rightData">
 			<!-- 历史数据-期数列表 -->
-			<!-- <view class="hdTable1">
+			<view v-if="hdTableType == 1" class="hdTable1">
 				<view class="tableRow" v-for="i in 3" :key="i">
 					<view class="tableRowL">
 						<text class="date">2023/9/20</text>
 						<text class="num">第{{i}}期</text>
 					</view>
 					<view class="tableRowR" @click="getTabDetail(i)">
-						<text>+</text>
+						<text style="margin-top: -8rpx;">+</text>
 					</view>
 				</view>
-			</view> -->
+			</view>
 			
 			<!-- 历史数据-期数详情 -->
-			<view class="hdTable2Box">
+			<view v-if="hdTableType == 2" class="hdTable2Box">
 				<view class="hdTable2Top">
 					<view class="hdTable2TopL">
-						<text class="goTable1"></text>
+						<text class="goTable1" @click="hdTableType = 1"></text>
 					</view>
 					<view class="hdTable2TopR">
 						<text>期数：第20期</text>
@@ -192,6 +192,7 @@
 			return {
 				name: 'ticketDataCenter',
 				select: 'L',
+				hdTableType: 1,
 				nowData: [
 					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
 					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
@@ -207,6 +208,7 @@
 		methods: {
 			getTabDetail(i) {
 				console.log('---', i)
+				this.hdTableType = 2
 			},
 			nowTableGetMore(bol) {
 				console.log('即时数据more->', bol)
