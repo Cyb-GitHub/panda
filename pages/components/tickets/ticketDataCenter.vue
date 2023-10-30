@@ -44,7 +44,7 @@
 				</view>
 			</view>
 			
-			<!-- 历史数据-期数详情 -->
+			<!-- 历史数据 - 期数详情 -->
 			<view v-if="hdTableType == 2" class="hdTable2Box">
 				<view class="hdTable2Top">
 					<view class="hdTable2TopL">
@@ -61,7 +61,7 @@
 							<view class="table-col-top">
 								<text>支付抽奖券</text>
 								<text>总数量</text>
-								<view class="sanjiao"></view>
+								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>111</text>
@@ -71,7 +71,7 @@
 							<view class="table-col-top">
 								<text>1等奖</text>
 								<text>奖励总数</text>
-								<view class="sanjiao"></view>
+								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>111</text>
@@ -81,7 +81,7 @@
 							<view class="table-col-top">
 								<text>2等奖</text>
 								<text>奖励总数</text>
-								<view class="sanjiao"></view>
+								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>111</text>
@@ -93,7 +93,7 @@
 							<view class="table-col-top">
 								<text>3等奖</text>
 								<text>奖励总数</text>
-								<view class="sanjiao"></view>
+								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>111</text>
@@ -103,7 +103,7 @@
 							<view class="table-col-top">
 								<text>4等奖</text>
 								<text>奖励总数</text>
-								<view class="sanjiao"></view>
+								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>111</text>
@@ -112,7 +112,7 @@
 						<view class="table-col">
 							<view class="table-col-top">
 								<text>本期余额</text>
-								<view class="sanjiao"></view>
+								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>111</text>
@@ -151,7 +151,7 @@
 						<view class="table-col">
 							<view class="table-col-top">
 								<text>总余额</text>
-								<view class="sanjiao"></view>
+								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>111</text>
@@ -161,7 +161,7 @@
 							<view class="table-col-top">
 								<text>获得共建奖励的</text>
 								<text>LPG数量</text>
-								<view class="sanjiao"></view>
+								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>111</text>
@@ -177,6 +177,20 @@
 						</view>
 					</view>
 				</view>
+			</view>
+			
+			<!-- 历史数据 - 期数详情 - 数值详情 -->
+			<view  v-if="hdTableType == 3" class="hdTable3Box">
+				<view class="hdTable3Top">
+					<view class="hdTable3TopL">
+						<text class="goTable2" @click="hdTableType = 2"></text>
+					</view>
+					<view class="hdTable3TopR">
+						<text>期数：第20期</text>
+						<text>开奖号码：01.02.03.04.05</text>
+					</view>
+				</view>
+				<data-center-table :tableData="nowData" height="400rpx" @getMore="nowTableGetMore"></data-center-table>
 			</view>
 		</view>
 	</view>
@@ -207,8 +221,13 @@
 		},
 		methods: {
 			getTabDetail(i) {
-				console.log('---', i)
+				console.log('--期数--', i)
+				// this.期数 = i
 				this.hdTableType = 2
+			},
+			getPointDetail(type) {
+				console.log('--当期数值详情--', type)
+				this.hdTableType = 3
 			},
 			nowTableGetMore(bol) {
 				console.log('即时数据more->', bol)
@@ -294,10 +313,11 @@
 	display: flex;
 	flex-direction: column;
 	color: #ffffff;
-	padding: 32rpx;
+	padding: 32rpx 0;
 	.hdTable1{
-		width: 100%;
+		width: 718rpx;
 		height: 100%;
+		margin-left: 16rpx;
 		overflow-y: scroll;
 		border-top: 2rpx solid #666666;
 		.tableRow{
@@ -347,7 +367,7 @@
 		}
 	}
 	.hdTable2Box{
-		width: 100%;
+		width: 750rpx;
 		height: 100%;
 		.hdTable2Top{
 			width: 100%;
@@ -378,9 +398,10 @@
 			}
 		}
 		.hdTable2{
-			width: 100%;
+			width: 718rpx;
 			height: calc(100% - 130rpx);
 			margin-top: 10rpx;
+			margin-left: 16rpx;
 			border-top: 2rpx solid #666666;
 			border-left: 2rpx solid #666666;
 			border-right: 2rpx solid #666666;
@@ -427,6 +448,39 @@
 						height: 40%;
 					}
 				}
+			}
+		}
+	}
+	.hdTable3Box{
+		width: 100%;
+		height: 100%;
+		.hdTable3Top{
+			width: 100%;
+			height: 160rpx;
+			background-color: papayawhip;
+			display: flex;
+			align-items: center;
+			.hdTable3TopL{
+				width: 60rpx;
+				height: 120rpx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-right: 30rpx;
+				.goTable2{
+					width: 48rpx;
+					height: 60rpx;
+					background-color: #666666;
+					clip-path: polygon(100% 0, 30% 50%, 100% 100%);
+				}
+			}
+			.hdTable3TopR{
+				height: 120rpx;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				color: #FFFFFF;
+				font-size: 14px;
 			}
 		}
 	}
