@@ -432,6 +432,7 @@ export default {
 		delete: 'Delete',
 		transferSuc: 'transfer successful',
 		handlingFee: 'Primium',
+		transferFee: 'Transfer fee',
 		actualReceipt: 'Actual Receipt',
 		uidPLaceHolder: 'Please enter account uid',
 		namePlaceHolder: 'Please enter nick name',
@@ -446,6 +447,7 @@ export default {
 		exchangeRate: 'Exchange Rate',
 		positive: 'must be positive number',
 		transferValueError: 'The input amount exceeds the balance',
+		transferValueError1: 'The withdrawal amount is less than the handling fee'
 	},
 	share: {
 		shareSource: 'Source',

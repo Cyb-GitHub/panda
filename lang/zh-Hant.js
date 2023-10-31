@@ -328,7 +328,7 @@ export default {
 		recharge: '充值',
 		withdrawal: '提現',
 		withdrawalSucInfo: '成功提現，社區將在24小時內處理，請留意明細裡的訂單狀態',
-		transformation: '轉換',
+		transformation: '兌換',
 		transfer: '劃轉',
 		source: '來源',
 		num: '數量',
@@ -432,6 +432,7 @@ export default {
 		delete: '刪除',
 		transferSuc: '劃轉成功',
 		handlingFee: '提現手續費',
+		transferFee: '劃轉手續費',
 		actualReceipt: '實際到帳',
 		uidPLaceHolder: '請輸入UID',
 		namePlaceHolder: '請輸入暱稱',
@@ -446,6 +447,7 @@ export default {
 		exchangeRate: '兌換比例',
 		positive: '劃轉必須為正數',
 		transferValueError: '輸入金額超過餘額',
+		transferValueError1: '提現金額小於手續費'
 	},
 	share: {
 		shareSource: '來源',

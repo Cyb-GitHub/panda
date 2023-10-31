@@ -21,7 +21,10 @@
 					
 				</view>
 				<span class="account-info-content-item-detail-inner-text">
-					{{accountInfo[accountItem.valueKey]}}
+					<span v-if="accountItem.valueKey == 'usdtAmount'">{{accountInfo[accountItem.valueKey]}}</span>
+					<span v-if="accountItem.valueKey == 'bambooAmount'">{{Math.trunc(accountInfo[accountItem.valueKey])}}</span>
+					<span v-if="accountItem.valueKey == 'raffleTicketAmount'">{{Math.trunc(accountInfo[accountItem.valueKey])}}</span>
+					<span v-if="accountItem.valueKey == 'lpgAmount'">{{accountInfo[accountItem.valueKey]}}</span>
 				</span>
 			</view>
 			<view

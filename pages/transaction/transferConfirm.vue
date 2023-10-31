@@ -72,7 +72,7 @@ export default {
 			return `${this.$t('transfer.transferValueError')}`
 		},
 		getTranceInfoStr() {
-			return `${this.$t('transfer.handlingFee')}：${this.commission}%,
+			return `${this.$t('transfer.transferFee')}：${this.commission}%,
 					${this.$t('transfer.actualReceipt')} ${this.getActualBalance()}${this.typeStr}`
 		},
 		getBalance() {

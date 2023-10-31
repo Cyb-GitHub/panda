@@ -120,7 +120,7 @@ export default {
 			return `${this.$t('transfer.exchangeRate')}：${this.labelMap[this.currentDotType]}: ${this.labelMap[this.transDotType]} = 
 					1 : ${this.transInfo.exchangeRate},
 					${this.$t('transfer.actualReceipt')} ${this.getActualValue()}${this.labelMap[this.transDotType]},
-					${this.$t('transfer.passion')}： ${this.transInfo.premiumInfo.premium}`
+					${this.$t('transfer.passion')}： ${this.transInfo.premiumInfo.premium} ${this.labelMap[this.currentDotType]}`
 		},
 		getBalance() {
 			if (this.balance) {

@@ -215,6 +215,15 @@ export default {
 			  },
 			})
 		},
+		checkEmail(val) {
+			let emailReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+			if (emailReg.test(val)) {
+				return true
+			} else {
+				this.$util.showToast(this.$t('register.emailError'));
+				return;
+			}
+		},
 		async blurOnMail() {
 			const res = await this.$u.api.checkEmailExist(this.registerInfo.email);
 			if (res.exist) {
@@ -245,6 +254,7 @@ export default {
 		async registor() {
 			try {
 				const valid = await this.$refs.registerForm.validate();
+				this.checkEmail(this.registerInfo.email)
 				if (this.registerInfo.password !== this.registerInfo.validatePass) {
 					this.$util.showToast(this.$t('register.confirmPasswordError'));
 					return;

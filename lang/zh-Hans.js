@@ -49,7 +49,7 @@ export default {
 		myRaffle: '我的中奖',
 		myRaffleTicket: '抽奖券',
 		dataCenter: '数据中心',
-		feeding: '喂养',
+		feeding: '投喂',
 		raffleTicket: '抽奖券',
 		vote: '投票',
 		voteHistory: '投票历史',
@@ -328,7 +328,7 @@ export default {
 		recharge: '充值',
 		withdrawal: '提现',
 		withdrawalSucInfo: '成功提现，社区将在24小时内处理，请留意明细里的订单状态',
-		transformation: '转换',
+		transformation: '兑换',
 		transfer: '划转',
 		source: '来源',
 		num: '数量',
@@ -432,6 +432,7 @@ export default {
 		delete: '删除',
 		transferSuc: '划转成功',
 		handlingFee: '提现手续费',
+		transferFee: '划转手续费',
 		actualReceipt: '实际到账',
 		uidPLaceHolder: '请输入UID',
 		namePlaceHolder: '请输入昵称',
@@ -446,6 +447,7 @@ export default {
 		exchangeRate: '兑换比例',
 		positive: '划转必须为正数',
 		transferValueError: '输入金额超过余额',
+		transferValueError1: '提现金额小于手续费'
 	},
 	share: {
 		shareSource: '来源',

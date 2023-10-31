@@ -30,6 +30,12 @@
 				{{getValueErrorStr}}
 			</view>
 		</view>
+		<view v-if="withdrawalValue !== null && withdrawalValue < commission"
+			class="wallet-withdrawal-balance-error-area">
+			<view class="wallet-withdrawal-balance-span error">
+				{{getValueErrorStr1}}
+			</view>
+		</view>
 		<view class="wallet-withdrawal-info-area">
 			<span v-if="withdrawalValue" class="wallet-withdrawal-info-span">
 				{{getTranceInfoStr}}
@@ -88,6 +94,9 @@ export default {
 		},
 		getValueErrorStr() {
 			return `${this.$t('transfer.transferValueError')}`
+		},
+		getValueErrorStr1() {
+			return `${this.$t('transfer.transferValueError1')}`
 		},
 		getTranceInfoStr() {
 			return `${this.$t('statement.handlingFee')}：${this.commission}${this.labelMap[this.currentDotType]} ${this.withdrawLpgUsdtPremium ? this.withdrawLpgUsdtPremium + "U" : ''},
@@ -152,6 +161,9 @@ export default {
 			this.withdrawalValue = this.balance
 		},
 		handleSend() {
+			if (this.withdrawalValue !== null && this.withdrawalValue > this.getBalance) {
+				return;
+			}
 			if (!this.withdrawalValue) {
 				this.$u.toast(this.$t('transformation.emptyInfo'));
 				return;
