@@ -312,4 +312,12 @@
 	.font-weight {
 		font-weight: bold;
 	}
+	
+	.uni-table{
+		background-color: #A0A0A0!important;
+	}
+	
+	.uni-table-text{
+		color: #ffffff!important;
+	}
 </style>

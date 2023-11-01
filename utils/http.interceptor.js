@@ -2,8 +2,8 @@ const install = (Vue, vm) => {
 
 	// 此为自定义配置参数，具体参数见上方说明
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'http://154.38.116.245:8001/renren-fast',
-		// baseUrl: 'https://api.lpgcom.net/renren-fast',
+		baseUrl: 'http://154.38.116.245:8001/renren-fast', // 测试环境
+		// baseUrl: 'https://api.lpgcom.net/renren-fast',  // 正式环境
 		showLoading: true,
 		loadingText: 'Loading...',
 		loadingTime: 800,

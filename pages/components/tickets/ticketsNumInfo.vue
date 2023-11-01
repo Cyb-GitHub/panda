@@ -28,29 +28,49 @@
 			<u-empty v-if="!ticketsNumGroups.length" :text="$t('noMoreData')"></u-empty>
 		</view>
 		<view class="ticket-num-info-opt">
-			<u-row class="my-account-opt" gutter="20">
-				<u-col span="6">
-					<button class="button opt" @click="continueAdd">
+			<u-row class="my-account-opt" gutter="24">
+				<u-col span="4">
+					<button class="button" @click="showLotteryRules">
+						{{$t('ticket.lotteryRules')}}
+					</button>
+				</u-col>
+				<u-col span="4">
+					<button class="button" @click="continueAdd">
 						{{$t('ticket.addSelect')}}
 					</button>
 				</u-col>
-				<u-col span="6">
+				<u-col span="4">
 					<button class="button opt" :disabled="getTotalRaffleTickets() === 0" @click="payRaffleRecord">
 						{{`${$t('ticket.payTickets')}(${getTotalRaffleTickets()})`}}
 					</button>
 				</u-col>
 			</u-row>
 		</view>
+		<detailPopup :visiable="showLotteryRulesPopup" @close="handleDetailClose">
+			<template slot="title">
+				{{$t('ticket.lotteryRules')}}
+			</template>
+			<template slot="content">
+				<view class="share-info-detail-area">
+					111
+				</view>
+			</template>
+		</detailPopup>
 	</view>
 </template>
 
 <script>
+	import detailPopup from '@/pages/components/popup/detailPopup.vue';
 	export default {
+		components: {
+			detailPopup,
+		},
 		data() {
 			return {
 				ticketsNumGroups: [],
 				maxTicketNum: 999,
 				maxGroup: 6,
+				showLotteryRulesPopup: false
 			}
 		},
 		computed: {},
@@ -115,6 +135,14 @@
 				setTimeout(() => {
 					this.$emit('updateChildEvent', 'ticketsNumSelector');
 				}, 300)
+			},
+			showLotteryRules() {
+				// 可参考 /pages/components/share/shareIndex.vue
+				console.log('抽奖规则')
+				this.showLotteryRulesPopup = true
+			},
+			handleDetailClose() {
+				this.showLotteryRulesPopup = false;
 			}
 		},
 	}
@@ -167,7 +195,7 @@
 
 	.button {
 		max-width: 130px;
-		width: 60px;
+		width: 100px;
 		height: 35px;
 		border-radius: 5px;
 		background: url("@/static/images/1x/button-mid.png");
@@ -181,7 +209,7 @@
 		font-size: 12px;
 
 		&.opt {
-			width: 130px;
+			width: 115px;
 		}
 	}
 

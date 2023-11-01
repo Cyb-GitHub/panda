@@ -361,6 +361,7 @@ export default {
 		submitInfo: 'Submit Successfully',
 	},
 	ticket: {
+		lotteryRules: 'Lottery rules',
 		addSelect: 'Continue',
 		delete: 'Delete',
 		deleteInfo: 'Delete Successful',
@@ -381,7 +382,7 @@ export default {
 		maxGroup: 'Please complete the payment before continuing with account selection',
 		noMoreRecorder: 'No more lottery records!',
 		noEnoughTicket: 'ticket not enough pay for raffle',
-		notWorkTime: 'You could not pay for raffle right now',
+		notWorkTime: 'Lottery tickets are closed from 20:28:00 to 23:59:59 every day and all day every Sunday',
 		beforeDrawTime: '{n} raffle to be drawn',
 		afterDrawTime: '{n} raffle to be drawn:  {day} d {hour} h {minute} m'
 	},

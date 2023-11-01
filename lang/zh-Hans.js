@@ -24,7 +24,7 @@ export default {
 	},
 	index: {
 		functional: '功能区',
-		ticket: '抽奖券',
+		ticket: '抽奖区',
 		coin: '质押借币',
 		community: '社区投票',
 		account: '账户',
@@ -361,6 +361,7 @@ export default {
 		submitInfo: '充值信息已提交',
 	},
 	ticket: {
+		lotteryRules: '抽奖规则',
 		addSelect: '我要选号',
 		delete: '删除',
 		deleteInfo: '删除成功',
@@ -381,7 +382,7 @@ export default {
 		maxGroup: '请先完成支付后再继续选号',
 		noMoreRecorder: '无更多开奖记录',
 		noEnoughTicket: '抽奖券数量不足',
-		notWorkTime: '本时段不可支付抽奖券',
+		notWorkTime: '每天20点28分00秒至23点59分59秒和每周日全天均停止支付抽奖券',
 		beforeDrawTime: '第{n}期抽奖等待开奖',
 		afterDrawTime: '距离第{n}期开奖时间还有: {day}天{hour}小时{minute}分钟'
 	},
