@@ -145,6 +145,7 @@ export default {
 			}
 		}
 		.account-info-content-item-detail {
+			position: relative;
 			width: 85%;
 			border: 1px solid black;
 			height: 18px;
@@ -205,7 +206,9 @@ export default {
 	font-size: 4px;
 	margin-left: 3px;
 	z-index: 3;
-	//position: absolute;
+	position: absolute;
+	left: 0;
+	bottom: 0;
 }
 .account-info-content-item-title {
 	padding: 2px 5px 2px 5px;

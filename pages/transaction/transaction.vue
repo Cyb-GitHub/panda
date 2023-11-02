@@ -226,10 +226,10 @@ export default {
 		width: 96%;
 		padding: 15px 0px 0px 0px;
 		margin-left: 2%;
-		background: url("@/static/images/1x/tran-background.png");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: contain;
+		// background: url("@/static/images/1x/tran-background.png");
+		// background-position: center;
+		// background-repeat: no-repeat;
+		// background-size: contain;
 		display: flex;
 	}
 </style>

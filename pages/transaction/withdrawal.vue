@@ -215,7 +215,7 @@ export default {
 	.wallet-withdrawal-input {
 		width: 200px;
 		flex: none;
-		border-bottom: 2px #fff solid;
+		border-bottom: 1px #fff solid!important;
 		/deep/ .uni-input-wrapper {
 			display: flex;
 			align-items: center;
