@@ -1,17 +1,22 @@
 <template>
 	<view>
 		<view class="share-reward-basic">
-			<u-row class="share-reward" gutter="3" customStyle="margin-bottom: 10px">
-				<u-col span="4">
+			<u-row class="share-reward" gutter="2" customStyle="margin-bottom: 10px">
+				<u-col span="2">
 					<image src="@/static/images/1x/chatAva.png" mode="heightFix"
 						class="share-reward-icon"></image>
 				</u-col>
-				<u-col class="share-reward-name-col" span="8">
+				<u-col class="share-reward-name-col" span="6">
 					<view class="share-reward-name-txt">
 						{{vuex_userInfo.name}}
 					</view>
 					<view class="share-reward-name-txt">
 						{{vuex_userInfo.uid}}
+					</view>
+				</u-col>
+				<u-col span="4">
+					<view class="share-reward-rule-btn" @click="shareRewardRulesPopup = true">
+						<text>分享奖励规则</text>
 					</view>
 				</u-col>
 			</u-row>
@@ -26,6 +31,18 @@
 			 :shareReward="sr"
 			/>
 		</view>
+		<detailPopup :visiable="shareRewardRulesPopup" @close="handleDetailClose">
+			<template slot="title">
+				{{$t('share.shareRewardRules')}}
+			</template>
+			<template slot="content">
+				<view class="shareRewardRulesBox">
+					<text class="shareRewardRulesItem">{{$t('share.shareRewardRules')}}:</text>
+					<text class="shareRewardRulesItem">{{$t('share.shareRewardRulesDesc1')}}</text>
+					<text class="shareRewardRulesItem">{{$t('share.shareRewardRulesDesc2')}}</text>
+				</view>
+			</template>
+		</detailPopup>
 	</view>
 </template>
 
@@ -34,6 +51,7 @@
 	import shareRewardItem from '@/pages/components/share/shareRewardItem.vue'
 	import ACCOUNT_STATEMENT from '@/pages/constant/accountStatementEnum.js';
 	import AMOUNT from '@/pages/constant/amountEnum.js';
+	import detailPopup from '@/pages/components/popup/detailPopup.vue';
 	
 	export default {
 		data() {
@@ -44,12 +62,14 @@
 					day: 1
 				},
 				shareRewards: [],
+				shareRewardRulesPopup: false
 			};
 		},
 		name: 'shareRewards',
 		components: {
 			dateSelector,
 			shareRewardItem,
+			detailPopup
 		},
 		mounted() {
 			this.initData();
@@ -77,6 +97,9 @@
 				const dateInfo = new Date(this.date.year, this.date.month - 1, this.date.day);
 				return dateInfo.getTime();
 			},
+			handleDetailClose() {
+				this.shareRewardRulesPopup = false;
+			}
 		},
 	}
 </script>

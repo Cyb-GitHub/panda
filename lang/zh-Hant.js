@@ -13,7 +13,7 @@ export default {
 		time: '時間',
 		status: '狀態',
 		remainAmount: '餘額',
-		num: '提現數量',
+		num: '數量',
 	},
 	transType: {
 		lpg: 'LPG',
@@ -384,7 +384,14 @@ export default {
 		noEnoughTicket: '抽獎券數量不足',
 		notWorkTime: '每天20點28分00秒至23點59分59秒和每週日全天均停止支付抽獎券',
 		beforeDrawTime: '第{n}期抽獎等待開獎',
-		afterDrawTime: '距離第{n}期開獎時間還有: {day}天{hour}小時{minute}分鐘'
+		afterDrawTime: '距離第{n}期開獎時間還有: {day}天{hour}小時{minute}分鐘',
+		lotteryRulesTitle: '今彩{n}抽獎規則：',
+		lotteryRulesItem1: '周一至周六晚20點30分開始臺灣官方現場開獎，社區20點30分更新開獎結果，您可至我的中獎查看開獎號碼及您的中獎情況。21點08分前發放獎勵，您可至您的郵件領取獎勵，超過兩小時未領取，社區幫您自動領取。',
+		lotteryRulesItem2: '選號支付抽獎時間：每周一到周六0點至20點28分，其余時間無法支付抽獎券。',
+		lotteryRulesItem3: '1等獎 五個號碼對 獎勵48000竹子/獎勵',
+		lotteryRulesItem4: '2等獎 四個號碼對 獎勵400竹子/獎勵',
+		lotteryRulesItem5: '3等獎 三個號碼對 獎勵6竹子/獎勵',
+		lotteryRulesItem6: '4等獎 兩個號碼對 獎勵1竹子/獎勵',
 	},
 	feed: {
 		suc: '成功投餵竹子，贈送的抽獎券{lpg}已發放，請核驗查收',
@@ -399,6 +406,15 @@ export default {
 		pick: '領取',
 		pickSuc: '領取成功',
 		pickUpDup: '您已經領取該獎勵，不可重複領取',
+		airDropRules: '空投券規則',
+		airdropRulesTitle: '每日空投規則',
+		airdropRulesItem1: '參與對象：領養並升級寵物熊貓的玩家',
+		airdropRulesItem2: '空投條件：憑社區贈送的空投券獲得空投LPG代幣',
+		airdropRulesItem3: '空投數量：社區每天固定空投600萬枚LPG代幣,每24個月後減半',
+		airdropRulesItem4: '空投時間：每日空投上一日份額',
+		airdropRulesItem5: '累計空投：空投98億枚代幣，預計分100年以上完成',
+		airdropRulesItem6: '每張空頭券獲得空投代幣數量計算方式：600萬枚(減半後按減半數量) ÷ 上日總發放空投券數量',
+		airdropRulesItem7: '當結果大於1枚/券時，按1枚/券空投，如發生每日按最高數量空投仍有剩余，剩余部分進行銷毀並公告數量及黑洞錢包地址。每周銷毀一次。',
 	},
 	chat: {
 		title: '系統客服',
@@ -492,7 +508,10 @@ export default {
 				 當月您將獲得共建獎勵x3發放資格。\
 				 (不同時享有共建獎勵發放和共建獎勵X2發放)\
 				 按達到條件當天實際持有代幣數量，\
-				 以100的整倍數計算，以竹子形式於次月1號發放。'
+				 以100的整倍數計算，以竹子形式於次月1號發放。',
+		shareRewardRules: '分享獎勵規則',
+		shareRewardRulesDesc1: '1、分享的玩家直接兌換代幣：玩家獲得分享物件兌換數量2%代幣獎勵。',
+		shareRewardRulesDesc2: '2、分享的玩家通過投餵竹子獲得代幣：當您分享對象獲得空投代幣後,玩家獲得分享物件空投代幣數量2%代幣獎勵。'
 	},
 	statement: {
 		progress: '進行中',

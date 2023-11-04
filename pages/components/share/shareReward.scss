@@ -24,6 +24,21 @@
 
 .share-reward-name-txt {
 		padding: 0px 5px 0px 5px;
+		margin: 0 4px;
+}
+
+.share-reward-rule-btn{
+	padding: 2px 5px;
+	border-radius: 5px;
+	background: url("@/static/images/1x/button-mid.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
 }
 
 .share-reward-name-col {
@@ -87,4 +102,15 @@
 
 .highLight {
 		color: green;
+}
+
+.shareRewardRulesBox{
+	display: flex;
+	flex-direction: column;
+	color: #d8d8d8;
+	font-size: 14px;
+}
+
+.shareRewardRulesItem{
+	margin-bottom: 10px;
 }

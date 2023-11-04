@@ -384,7 +384,14 @@ export default {
 		noEnoughTicket: 'ticket not enough pay for raffle',
 		notWorkTime: 'Lottery tickets are closed from 20:28:00 to 23:59:59 every day and all day every Sunday',
 		beforeDrawTime: '{n} raffle to be drawn',
-		afterDrawTime: '{n} raffle to be drawn:  {day} d {hour} h {minute} m'
+		afterDrawTime: '{n} raffle to be drawn:  {day} d {hour} h {minute} m',
+		lotteryRulesTitle: 'Rules for the current lottery {n} draw：',
+		lotteryRulesItem1: 'From Monday to Saturday at 20:30 pm, the official live lottery in Taiwan will begin. The community will update the lottery results at 20:30 pm. You can check the lottery number and your winning status on my winning page. Rewards will be distributed before 21:08. You can collect them through your email. If you do not receive them within two hours, the community will automatically collect them for you.',
+		lotteryRulesItem2: 'Number selection payment lottery time: From 0:00 to 20:28 every Monday to Saturday, lottery tickets cannot be paid during other times.',
+		lotteryRulesItem3: 'First prize five numbers for a reward of 48000 bamboo/reward',
+		lotteryRulesItem4: 'Second prize, four numbers for a reward of 400 bamboo/reward',
+		lotteryRulesItem5: 'Third Prize Three Numbers Pair Rewards 6 Bamboo/Reward',
+		lotteryRulesItem6: 'Fourth Prize Two Numbers Pair Reward 1 Bamboo/Reward',
 	},
 	feed: {
 		suc: 'Successfully fed bamboo, the complimentary lottery ticket {lpg} has been distributed, please check and receive',
@@ -399,6 +406,15 @@ export default {
 		pick: 'Claim',
 		pickSuc: 'Pick Up Successful',
 		pickUpDup: 'No dup pick up',
+		airDropRules: 'Airdrop Coupon Rules',
+		airdropRulesTitle: 'Daily airdrop rules',
+		airdropRulesItem1: 'Participants: Players who adopt and upgrade pet pandas',
+		airdropRulesItem2: 'Airdrop conditions: Obtain airdrop LPG tokens with airdrop coupons presented by the community',
+		airdropRulesItem3: 'Number of airdrops: The community airdrops 6 million LPG tokens every day, which will be halved every 24 months.',
+		airdropRulesItem4: 'Airdrop time: Daily airdrop of the previous day’s share',
+		airdropRulesItem5: 'Cumulative airdrop: 9.8 billion tokens airdropped, expected to be completed in more than 100 years',
+		airdropRulesItem6: 'Calculation method for the number of airdrop tokens obtained for each short coupon: 6 million (the number will be halved after halving) ÷ The total number of airdrop tokens issued on the previous day',
+		airdropRulesItem7: 'When the result is greater than 1 coin/voucher, airdrop will be carried out at 1 coin/voucher. If there is still a daily airdrop of the highest number, the remainder will be destroyed and the quantity and black hole wallet address will be announced. Destroyed once a week.',
 	},
 	chat: {
 		title: 'System Customer Service',
@@ -493,7 +509,10 @@ export default {
 				 当月您将获得共建奖励x3发放资格。\
 				 (不同时享有共建奖励发放和共建奖励X2发放)\
 				 按达到条件当天实际持有代币数量，\
-				 以100的整倍数计算，以竹子形式于次月1号发放。'
+				 以100的整倍数计算，以竹子形式于次月1号发放。',
+		shareRewardRules: 'Sharing reward rules',
+		shareRewardRulesDesc1: '1. Shared players directly exchange tokens: Players receive a token reward of 2% for the amount of shared items exchanged.',
+		shareRewardRulesDesc2: '2. Shared players receive tokens by feeding bamboo: When your shared object receives airdrop tokens, players receive a 2% token reward for the number of airdrop tokens in the shared object.'
 	},
 	statement: {
 		progress: 'In Progress',

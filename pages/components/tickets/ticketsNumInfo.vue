@@ -30,12 +30,12 @@
 		<view class="ticket-num-info-opt">
 			<u-row class="my-account-opt" gutter="24">
 				<u-col span="4">
-					<button class="button" @click="showLotteryRules">
+					<button class="button" @click="showLotteryRules('rule')">
 						{{$t('ticket.lotteryRules')}}
 					</button>
 				</u-col>
 				<u-col span="4">
-					<button class="button" @click="continueAdd">
+					<button class="button" @click="showLotteryRules('add')">
 						{{$t('ticket.addSelect')}}
 					</button>
 				</u-col>
@@ -51,8 +51,16 @@
 				{{$t('ticket.lotteryRules')}}
 			</template>
 			<template slot="content">
-				<view class="share-info-detail-area">
-					111
+				<view class="lotteryRulesBox">
+					<text class="lotteryRulesItem">{{$t('ticket.lotteryRulesTitle', { 'n': 537})}}</text>
+					<text class="lotteryRulesItem">{{$t('ticket.lotteryRulesItem1')}}</text>
+					<text class="lotteryRulesItem">{{$t('ticket.lotteryRulesItem2')}}</text>
+					<view class="lotteryRulesRule">
+						<text>{{$t('ticket.lotteryRulesItem3')}}</text>
+						<text>{{$t('ticket.lotteryRulesItem4')}}</text>
+						<text>{{$t('ticket.lotteryRulesItem5')}}</text>
+						<text>{{$t('ticket.lotteryRulesItem6')}}</text>
+					</view>
 				</view>
 			</template>
 		</detailPopup>
@@ -70,7 +78,10 @@
 				ticketsNumGroups: [],
 				maxTicketNum: 999,
 				maxGroup: 6,
-				showLotteryRulesPopup: false
+				showLotteryRulesPopup: false,
+				isAddRules: false,
+				showAddRules: true,
+				noTip: false
 			}
 		},
 		computed: {},
@@ -136,13 +147,26 @@
 					this.$emit('updateChildEvent', 'ticketsNumSelector');
 				}, 300)
 			},
-			showLotteryRules() {
+			showLotteryRules(type='add') {
 				// 可参考 /pages/components/share/shareIndex.vue
 				console.log('抽奖规则')
-				this.showLotteryRulesPopup = true
+				if (type==='add') {
+					if (this.showAddRules) {
+						this.isAddRules = true
+						this.showLotteryRulesPopup = true
+					} else {
+						this.continueAdd()
+					}
+				} else {
+					this.showLotteryRulesPopup = true
+				}
+				
 			},
 			handleDetailClose() {
 				this.showLotteryRulesPopup = false;
+				if (this.isAddRules) {
+					this.continueAdd()
+				}
 			}
 		},
 	}
@@ -241,5 +265,18 @@
 		justify-content: center;
 		display: flex;
 		box-shadow: 0px 2p
+	}
+	.lotteryRulesBox{
+		display: flex;
+		flex-direction: column;
+		font-size: 12px;
+		color: #EEEEEE;
+		.lotteryRulesItem{
+			margin-bottom: 10px;
+		}
+		.lotteryRulesRule{
+			display: flex;
+			flex-direction: column;
+		}
 	}
 </style>

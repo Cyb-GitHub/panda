@@ -3,14 +3,36 @@
 		<view class="index-basic-air-drop-text">
 			{{getAirDropText()}}
 		</view>
-		<view class="index-basic-air-drop-but" :class="{disable: !this.account}" @click="handleAirDrop">
+		<!-- :class="{disable: !this.account}" -->
+		<view class="index-basic-air-drop-but" @click="handleAirDrop">
 			{{$t('airDrop.pick')}}
 		</view>
+		<detailPopup :visiable="showRulesPopup" @close="handleDetailClose">
+			<template slot="title">
+				{{$t('airDrop.airDropRules')}}
+			</template>
+			<template slot="content">
+				<view class="airdropRulesBox">
+					<text class="airdropRulesItem">{{$t('airDrop.airdropRulesTitle')}}</text>
+					<text class="airdropRulesItem">{{$t('airDrop.airdropRulesItem1')}}</text>
+					<text class="airdropRulesItem">{{$t('airDrop.airdropRulesItem2')}}</text>
+					<text class="airdropRulesItem">{{$t('airDrop.airdropRulesItem3')}}</text>
+					<text class="airdropRulesItem">{{$t('airDrop.airdropRulesItem4')}}</text>
+					<text class="airdropRulesItem">{{$t('airDrop.airdropRulesItem5')}}</text>
+					<text class="airdropRulesItem">{{$t('airDrop.airdropRulesItem6')}}</text>
+					<text class="airdropRulesItem">{{$t('airDrop.airdropRulesItem7')}}</text>
+				</view>
+			</template>
+		</detailPopup>
 	</view>
 </template>
 
 <script>
+import detailPopup from '@/pages/components/popup/detailPopup.vue';
 export default {
+	components: {
+		detailPopup
+	},
 	data() {
 		return {
 			airDropInfo: {
@@ -19,6 +41,7 @@ export default {
 			},
 			accountId: 0,
 			available: true,
+			showRulesPopup: false,
 			account: 0,
 		}
 	},
@@ -38,13 +61,21 @@ export default {
 				}
 			})
 		},
+		handleDetailClose() {
+			this.showRulesPopup = false
+		},
 		handleAirDrop() {
-			this.$u.api.airdropBusinessApis.pick({accountId: this.accountId}).then((res) => {
-				if (res.code === 0) {
-					this.$util.showToastSuc(this.$t('airDrop.suc'))
-					this.airDropAvailable();
-				}
-			})
+			if (!this.account) {
+				console.log('----')
+				this.showRulesPopup = true
+			} else {
+				this.$u.api.airdropBusinessApis.pick({accountId: this.accountId}).then((res) => {
+					if (res.code === 0) {
+						this.$util.showToastSuc(this.$t('airDrop.suc'))
+						this.airDropAvailable();
+					}
+				})
+			}
 		}
 	}
 }
@@ -95,4 +126,16 @@ export default {
 	opacity: 0.5;
 	pointer-events: none;
 }
+
+.airdropRulesBox{
+	display: flex;
+	flex-direction: column;
+	color: #d8d8d8;
+	font-size: 14px;
+}
+
+.airdropRulesItem{
+	margin-bottom: 10px;
+}
+
 </style>
