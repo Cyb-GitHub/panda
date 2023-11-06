@@ -58,10 +58,10 @@
 		onShow: function() {
 			console.log('show')
 			this.checkAppUpdate()
-			// if(!this.$ws && this.vuex_token) {
+			if(!this.$ws && this.vuex_token) {
 				this.connectSocket(this.vuex_userInfo.id)
-			// 	this.$u.vuex("vuex_ws", this.$ws)
-			// }
+				this.$u.vuex("vuex_ws", this.$ws)
+			}
 		},
 		onHide: function() {
 			this.socketOpen = false
