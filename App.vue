@@ -58,10 +58,10 @@
 		onShow: function() {
 			console.log('show')
 			this.checkAppUpdate()
-			if(!this.$ws && this.vuex_token) {
+			// if(!this.$ws && this.vuex_token) {
 				this.connectSocket(this.vuex_userInfo.id)
-				this.$u.vuex("vuex_ws", this.$ws)
-			}
+				// this.$u.vuex("vuex_ws", this.$ws)
+			// }
 		},
 		onHide: function() {
 			this.socketOpen = false
@@ -223,10 +223,13 @@
 			},
 			//白皮书数据
 			readDataInterval() {
-				console.log(this.vuex_userInfo.id)
-				const intervalId = setInterval(() => {
-					this.getReadData()
-				}, 60000);
+				console.log('----',this.vuex_userInfo.id)
+				if(this.vuex_token) {
+					const intervalId = setInterval(() => {
+						this.getReadData()
+					}, 60000);
+				}
+				
 			},
 			getReadData() {
 				this.$u.api
