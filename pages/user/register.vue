@@ -140,9 +140,6 @@ export default {
 			  recUid: '',
 			  useRecUid: false,
 		  },
-		  isOriginHei:true,
-		  screenHeight: document.documentElement.clientHeight ||document.body.clientHeight,
-		  originHeight: document.documentElement.clientHeight ||document.body.clientHeight, 
 		  recInfoDisabled: false,
 		  disableButton: false,
 		  countdown: 0,
@@ -172,11 +169,6 @@ export default {
 				value: c.areaCode,
 			}
 		})
-		window.onresize = () => {
-		    return (() => {
-				this.screenHeight = document.documentElement.clientHeight ||document.body.clientHeigh
-		    })()
-		}
 	},
 	methods: {
 		handleRadioEvent() {
@@ -289,16 +281,7 @@ export default {
 				console.error(e);
 			}
 		},
- 	},
-	watch: {
-		screenHeight(val) {
-		    if (this.originHeight !== val) {
-				this.isOriginHei = false
-		    } else {
-				this.isOriginHei = true
-		    }
-		}
-	}
+ 	}
 }
 </script>
 <style lang="scss" scoped>

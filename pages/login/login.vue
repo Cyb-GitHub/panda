@@ -45,7 +45,7 @@
 			<text class="forget-link" @click="toRetrievePwd">{{$t('pwdLogin.forgetPassword')}}</text>
 		</view>
 		<!-- 忘记密码 -->
-		<view v-if="isOriginHei" class="bottom">
+		<view class="bottom">
 			<button class="bottom-btn" type="primary" @click="pwdLogin">
 				{{$t('pwdLogin.login')}}
 			</button>
@@ -77,9 +77,6 @@
 				},
 				showDownApp: false,
 				googleKey: '',
-				isOriginHei:true,
-				screenHeight: document.documentElement.clientHeight ||document.body.clientHeight,
-				originHeight: document.documentElement.clientHeight ||document.body.clientHeight, 
 				needCaptcha: false,
 				logo: '/static/logo.png',
 				rules: {
@@ -114,11 +111,6 @@
 			this.$u.vuex("vuex_token", "");
 			this.$util.cache('token', '');
 			this.getApp();
-			window.onresize = () => {
-			    return (() => {
-					this.screenHeight = document.documentElement.clientHeight ||document.body.clientHeigh
-			    })()
-			}
 		},
 		onShow() {
 			// #ifdef H5
@@ -185,15 +177,6 @@
 			},
 			download() {
 				 window.open(this.appLink);
-			}
-		},
-		watch: {
-			screenHeight(val) {
-			    if (this.originHeight !== val) {
-					this.isOriginHei = false
-			    } else {
-					this.isOriginHei = true
-			    }
 			}
 		}
 	}
