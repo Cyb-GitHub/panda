@@ -33,12 +33,12 @@
 		<view v-if="select=='R'" class="rightData">
 			<!-- 历史数据-期数列表 -->
 			<view v-if="hdTableType == 1" class="hdTable1">
-				<view class="tableRow" v-for="i in 3" :key="i">
+				<view class="tableRow" v-for="(item, index) in lotteryRecords" :key="index">
 					<view class="tableRowL">
-						<text class="date">2023/9/20</text>
-						<text class="num">第{{i}}期</text>
+						<text class="date">{{item.drawTime.substring(0, 10)}}</text>
+						<text class="num">第{{item.rafflePhase}}期</text>
 					</view>
-					<view class="tableRowR" @click="getTabDetail(i)">
+					<view class="tableRowR" @click="getTabDetail(item)">
 						<text style="margin-top: -8rpx;">+</text>
 					</view>
 				</view>
@@ -207,6 +207,9 @@
 				name: 'ticketDataCenter',
 				select: 'L',
 				hdTableType: 1,
+				lotteryRecords: [
+				],
+				currentLotteryInfo: {},
 				nowData: [
 					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
 					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
@@ -219,10 +222,12 @@
 				]
 			}
 		},
+		created() {
+			this.queryRaffleActivityPaged(2, 6)
+		},
 		methods: {
 			getTabDetail(i) {
-				console.log('--期数--', i)
-				// this.期数 = i
+				this.queryRaffleActivityDetail(i.id)
 				this.hdTableType = 2
 			},
 			getPointDetail(type) {
@@ -234,6 +239,46 @@
 			},
 			selectNav(nav) {
 				this.select = nav
+			},
+			queryRaffleActivityPaged(status, pagesSize) {
+				this.$u.api.raffleBusinessApis.queryRaffleActivityPaged({
+					raffleActivityStatus: status,
+					page: 1,
+					pageSize: pagesSize,
+				}).then(res =>{
+					if (res.code === 0) {
+						if (status === 1) {
+							console.log('--1--', res)
+							this.currentLotteryInfo = res.data.list[0]
+						} else if (status === 2) {
+							this.lotteryRecords = res.data.list
+							console.log('--2--', res)
+						}
+					}					
+				})
+			},
+			queryRaffleActivityDetail(id) {
+				this.$u.api.raffleBusinessApis.queryRaffleActivityDetail({
+					raffleRecordId: id
+				}).then(res =>{
+					if (res.code === 0) {
+						console.log('--期数详情--', res)
+					}					
+				})
+			},
+			queryRaffleRecordPaged() {
+				this.$u.api.raffleBusinessApis.queryRaffleRecordPaged({
+					accountId: this.vuex_userInfo.id,
+					raffleStatusList: [2],
+					raffleActivityStatus: 1,
+					page: 1,
+					pageSize: 100,
+				}).then(res => {
+					if (res.code === 0) {
+						// this.myTicketInfo = res.data.list
+						console.log('ticketInfo---', res.data.list)
+					}
+				})
 			}
 		}
 	}
