@@ -51,8 +51,8 @@
 						<text class="goTable1" @click="hdTableType = 1"></text>
 					</view>
 					<view class="hdTable2TopR">
-						<text>期数：第20期</text>
-						<text>开奖号码：01.02.03.04.05</text>
+						<text>期数：第{{lotteryDetail.rafflePhase}}期</text>
+						<text>开奖号码：{{ changeNum(lotteryDetail.winningNumber.split('-').join('.'))}}</text>
 					</view>
 				</view>
 				<view class="hdTable2">
@@ -64,7 +64,7 @@
 								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.raffleTicketCount}}</text>
 							</view>
 						</view>
 						<view class="table-col table-col-min">
@@ -74,7 +74,7 @@
 								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.prize1}}</text>
 							</view>
 						</view>
 						<view class="table-col">
@@ -84,7 +84,7 @@
 								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.prize2}}</text>
 							</view>
 						</view>
 					</view>
@@ -96,7 +96,7 @@
 								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.prize3}}</text>
 							</view>
 						</view>
 						<view class="table-col table-col-min">
@@ -106,7 +106,7 @@
 								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.prize4}}</text>
 							</view>
 						</view>
 						<view class="table-col">
@@ -115,7 +115,7 @@
 								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.assignableBambooCount }}</text>
 							</view>
 						</view>
 					</view>
@@ -125,7 +125,7 @@
 								<text>上期余额</text>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.lastAssignableBambooCount}}</text>
 							</view>
 						</view>
 						<view class="table-col table-col-min">
@@ -134,7 +134,7 @@
 								<text>竹子数量</text>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.lpgBambooCount}}</text>
 							</view>
 						</view>
 						<view class="table-col">
@@ -143,7 +143,7 @@
 								<text>支付数量</text>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.activityBambooCount}}</text>
 							</view>
 						</view>
 					</view>
@@ -154,7 +154,7 @@
 								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.remainingSumAssignableBambooCount }}</text>
 							</view>
 						</view>
 						<view class="table-col table-col-min">
@@ -164,7 +164,7 @@
 								<view class="sanjiao" @click="getPointDetail('A')"></view>
 							</view>
 							<view class="table-col-bot">
-								<text>111</text>
+								<text>{{lotteryDetail.cooperateActivityBambooCount }}</text>
 							</view>
 						</view>
 						<view class="table-col">
@@ -209,6 +209,7 @@
 				hdTableType: 1,
 				lotteryRecords: [
 				],
+				lotteryDetail: {},
 				currentLotteryInfo: {},
 				nowData: [
 					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
@@ -240,6 +241,14 @@
 			selectNav(nav) {
 				this.select = nav
 			},
+			changeNum(val) {
+				let N = Number(val)
+				if (N < 10) {
+					return '0' + N
+				} else {
+					return N
+				}
+			},
 			queryRaffleActivityPaged(status, pagesSize) {
 				this.$u.api.raffleBusinessApis.queryRaffleActivityPaged({
 					raffleActivityStatus: status,
@@ -248,11 +257,9 @@
 				}).then(res =>{
 					if (res.code === 0) {
 						if (status === 1) {
-							console.log('--1--', res)
 							this.currentLotteryInfo = res.data.list[0]
 						} else if (status === 2) {
 							this.lotteryRecords = res.data.list
-							console.log('--2--', res)
 						}
 					}					
 				})
@@ -262,7 +269,7 @@
 					raffleRecordId: id
 				}).then(res =>{
 					if (res.code === 0) {
-						console.log('--期数详情--', res)
+						this.lotteryDetail = res.data
 					}					
 				})
 			},
