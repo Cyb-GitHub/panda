@@ -8,9 +8,9 @@
 		</view>
 		<scroll-view scroll-y="true" style="width: 718rpx; border: 1px solid #666666;" :style="{'height': height}">
 			<view v-for="(item, index) in tableData" class="tableList" :key="index">
-				<view class="td" style="width: 170rpx; font-size: 12px;">{{item.a}}</view>
-				<view class="td" style="width: 170rpx;">{{item.b}}</view>
-				<view class="td" style="width: 200rpx;">{{item.c}}</view>
+				<view class="td" style="width: 170rpx; font-size: 12px;">{{item.payTime}}</view>
+				<view class="td" style="width: 170rpx;">{{item.accountName}}</view>
+				<view class="td" style="width: 200rpx;">{{item.raffleNumberStr}}</view>
 				<view class="td" style="width: 180rpx;">{{item.d}}</view>
 			</view>
 		</scroll-view>

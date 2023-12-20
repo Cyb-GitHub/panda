@@ -15,8 +15,8 @@
 					<text class="dataTopLeftItem">参与本期抽奖人数：12345</text>
 					<text class="dataTopLeftItem">已支付抽奖券数量：123450</text>
 					<view class="searchBox">
-						<input type="text" placeholder="请输入昵称">
-						<view class="btn">
+						<input v-model="ruleForm.accountName" type="text" placeholder="请输入昵称">
+						<view class="btn" @click="searchFn">
 							<text>查询</text>
 						</view>
 					</view>
@@ -52,7 +52,7 @@
 					</view>
 					<view class="hdTable2TopR">
 						<text>期数：第{{lotteryDetail.rafflePhase}}期</text>
-						<text>开奖号码：{{ changeNum(lotteryDetail.winningNumber.split('-').join('.'))}}</text>
+						<text>开奖号码：{{ changeNum(lotteryDetail.winningNumber) }}</text>
 					</view>
 				</view>
 				<view class="hdTable2">
@@ -211,24 +211,32 @@
 				],
 				lotteryDetail: {},
 				currentLotteryInfo: {},
-				nowData: [
-					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
-					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
-					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
-					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
-					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
-					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
-					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'},
-					{a:'2023/12/12 19:22:22', b:'2', c:'31,32,33,34,35', d:'4'}
-				]
+				nowData: [],
+				ruleForm: {
+				  accountId: null,
+				  accountName: null,
+				  enumRaffleActivityStatus: "TO_BE_DRAWN",
+				  enumRaffleStatusList: [
+					"TO_BE_PAID"
+				  ],
+				  page: 1,
+				  pageSize: 30,
+				  raffleActivityStatus: 0,
+				  raffleNumber: null,
+				  raffleStatusList: [
+					0
+				  ]
+				}
 			}
 		},
 		created() {
-			this.queryRaffleActivityPaged(2, 6)
+			this.queryRaffleActivityPaged(1, 30)
+			this.queryRaffleActivityPaged(2, 30)
+			this.queryRaffleDcRecordPaged()
 		},
 		methods: {
 			getTabDetail(i) {
-				this.queryRaffleActivityDetail(i.id)
+				this.queryRaffleActivityDetail(2, i.id)
 				this.hdTableType = 2
 			},
 			getPointDetail(type) {
@@ -236,17 +244,28 @@
 				this.hdTableType = 3
 			},
 			nowTableGetMore(bol) {
-				console.log('即时数据more->', bol)
+				this.ruleForm.page ++
+				this.queryRaffleDcRecordPaged(true)
+			},
+			searchFn() {
+				this.ruleForm.page = 1
+				this.queryRaffleDcRecordPaged()
 			},
 			selectNav(nav) {
 				this.select = nav
 			},
-			changeNum(val) {
-				let N = Number(val)
-				if (N < 10) {
-					return '0' + N
+			changeNum(str) {
+				if (str) {
+					let strs = str + ''
+					let arr = strs.split('-')
+					for (let i=0; i<arr.length; i++) {
+						if (arr[i] < 10) {
+							arr[i] = '0' + arr[i]
+						}
+					}
+					return arr.join('.')
 				} else {
-					return N
+					return str
 				}
 			},
 			queryRaffleActivityPaged(status, pagesSize) {
@@ -257,33 +276,50 @@
 				}).then(res =>{
 					if (res.code === 0) {
 						if (status === 1) {
-							this.currentLotteryInfo = res.data.list[0]
+							let id = res.data.list[0].id
+							this.queryRaffleActivityDetail(1, id) 
 						} else if (status === 2) {
 							this.lotteryRecords = res.data.list
 						}
 					}					
 				})
 			},
-			queryRaffleActivityDetail(id) {
+			queryRaffleActivityDetail(status, id) {
 				this.$u.api.raffleBusinessApis.queryRaffleActivityDetail({
 					raffleRecordId: id
 				}).then(res =>{
 					if (res.code === 0) {
-						this.lotteryDetail = res.data
+						if (status === 1) {
+							this.currentLotteryInfo = res.data
+						} else if (status === 2) {
+							this.lotteryDetail = res.data
+						}
 					}					
 				})
 			},
-			queryRaffleRecordPaged() {
-				this.$u.api.raffleBusinessApis.queryRaffleRecordPaged({
-					accountId: this.vuex_userInfo.id,
-					raffleStatusList: [2],
-					raffleActivityStatus: 1,
-					page: 1,
-					pageSize: 100,
+			queryRaffleDcRecordPaged(more = false) {
+				this.$u.api.raffleBusinessApis.queryRaffleDcRecordPaged({
+					accountId: this.ruleForm.accountId,
+					accountName: this.ruleForm.accountName,
+					enumRaffleActivityStatus: this.ruleForm.enumRaffleActivityStatus,
+					enumRaffleStatusList: this.ruleForm.enumRaffleStatusList,
+					raffleNumber: this.ruleForm.raffleNumber,
+					// raffleStatusList: [2],
+					// raffleActivityStatus: 1,
+					page: this.ruleForm.page,
+					pageSize: this.ruleForm.pageSize,
 				}).then(res => {
 					if (res.code === 0) {
-						// this.myTicketInfo = res.data.list
-						console.log('ticketInfo---', res.data.list)
+						let list = res.data.list
+						for(let i=0; i<list.length; i++) {
+							list[i].raffleNumberStr = list[i].raffleNumber.join(',')
+						}
+						console.log('列表---', list)
+						if (more) {
+							this.nowData = this.nowData.concat(list)
+						} else {
+							this.nowData = list
+						}
 					}
 				})
 			}
