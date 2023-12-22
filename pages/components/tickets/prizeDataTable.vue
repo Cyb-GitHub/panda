@@ -4,14 +4,16 @@
 			<view class="th" style="width: 170rpx;"><text>支付时间</text></view>
 			<view class="th" style="width: 170rpx;"><text>昵称</text></view>
 			<view class="th" style="width: 200rpx;"><text>选号</text></view>
-			<view class="th" style="width: 180rpx;border-right: 1px solid #666666;"><text>支付抽奖券数量</text></view>
+			<view class="th" style="width: 100rpx;"><text>支付抽奖券数量</text></view>
+			<view class="th" style="width: 80rpx;border-right: 1px solid #666666;"><text>发放奖励竹子数量</text></view>
 		</view>
 		<scroll-view v-if="tableData.length > 0" scroll-y="true" style="width: 718rpx; border: 1px solid #666666;" :style="{'height': height}">
 			<view v-for="(item, index) in tableData" class="tableList" :key="index">
 				<view class="td" style="width: 170rpx; font-size: 12px;">{{item.payTime}}</view>
 				<view class="td" style="width: 170rpx;">{{item.accountName}}</view>
 				<view class="td" style="width: 200rpx;">{{item.raffleNumberStr}}</view>
-				<view class="td" style="width: 180rpx;">{{item.multiple}}</view>
+				<view class="td" style="width: 100rpx;">{{item.multiple}}</view>
+				<view class="td" style="width: 80rpx;">{{item.rewardBambooCount}}</view>
 			</view>
 		</scroll-view>
 		<view v-if="tableData.length > 0" class="seeMore" @click="getMore">
@@ -32,7 +34,7 @@
 			},
 			height: {
 				Type: String,
-				default: '400rpx'
+				default: '350rpx'
 			}
 		},
 		data() {
@@ -60,7 +62,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			height: 50rpx;
+			height: 100rpx;
 			font-size: 12px;
 			border-top: 1px solid #666666;
 			border-left: 1px solid #666666;

@@ -61,7 +61,7 @@
 							<view class="table-col-top">
 								<text>支付抽奖券</text>
 								<text>总数量</text>
-								<view class="sanjiao" @click="getPointDetail('A')"></view>
+								<view class="sanjiao" @click="getPointDetail('ALL', '支付抽奖券总数量', lotteryDetail.raffleTicketCount)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.raffleTicketCount}}</text>
@@ -71,7 +71,7 @@
 							<view class="table-col-top">
 								<text>1等奖</text>
 								<text>奖励总数</text>
-								<view class="sanjiao" @click="getPointDetail('A')"></view>
+								<view class="sanjiao" @click="getPointDetail('A', '1等奖奖励总数', lotteryDetail.prize1)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize1}}</text>
@@ -81,7 +81,7 @@
 							<view class="table-col-top">
 								<text>2等奖</text>
 								<text>奖励总数</text>
-								<view class="sanjiao" @click="getPointDetail('A')"></view>
+								<view class="sanjiao" @click="getPointDetail('B', '2等奖奖励总数', lotteryDetail.prize2)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize2}}</text>
@@ -93,7 +93,7 @@
 							<view class="table-col-top">
 								<text>3等奖</text>
 								<text>奖励总数</text>
-								<view class="sanjiao" @click="getPointDetail('A')"></view>
+								<view class="sanjiao" @click="getPointDetail('C', '3等奖奖励总数', lotteryDetail.prize3)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize3}}</text>
@@ -103,7 +103,7 @@
 							<view class="table-col-top">
 								<text>4等奖</text>
 								<text>奖励总数</text>
-								<view class="sanjiao" @click="getPointDetail('A')"></view>
+								<view class="sanjiao" @click="getPointDetail('D', '4等奖奖励总数', lotteryDetail.prize4)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize4}}</text>
@@ -112,7 +112,7 @@
 						<view class="table-col">
 							<view class="table-col-top">
 								<text>本期余额</text>
-								<view class="sanjiao" @click="getPointDetail('A')"></view>
+								<view class="sanjiao" @click="getPointDetail('E')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.assignableBambooCount }}</text>
@@ -151,7 +151,7 @@
 						<view class="table-col">
 							<view class="table-col-top">
 								<text>总余额</text>
-								<view class="sanjiao" @click="getPointDetail('A')"></view>
+								<view class="sanjiao" @click="getPointDetail('F')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.remainingSumAssignableBambooCount }}</text>
@@ -161,7 +161,7 @@
 							<view class="table-col-top">
 								<text>获得共建奖励的</text>
 								<text>LPG数量</text>
-								<view class="sanjiao" @click="getPointDetail('A')"></view>
+								<view class="sanjiao" @click="getPointDetail('G')"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.cooperateActivityBambooCount }}</text>
@@ -185,12 +185,21 @@
 					<view class="hdTable3TopL">
 						<text class="goTable2" @click="hdTableType = 2"></text>
 					</view>
-					<view class="hdTable3TopR">
-						<text>期数：第20期</text>
-						<text>开奖号码：01.02.03.04.05</text>
+					<view v-if="!isE || !isF || !isG" class="hdTable3TopR">
+						<text>{{hdTable3Title}} <text v-if="showM">:</text> {{hdTable3Value}}</text>
 					</view>
 				</view>
-				<data-center-table :tableData="nowData" height="400rpx" @getMore="nowTableGetMore"></data-center-table>
+				<prize-data-table v-if="isPrizeTable" :tableData="prizeData" height="350rpx" @getMore="prizeTableGetMore"></prize-data-table>
+				<data-center-table v-if="isAllTable" :tableData="nowData" height="400rpx" @getMore="nowTableGetMore"></data-center-table>
+				<view v-if="isE" class="infoBox">
+					<text>此余额为方便统计以支付的抽奖券为依据统计。</text>
+				</view>
+				<view v-if="isF" class="infoBox">
+					<text>此余额已扣除10%的社区维护费用和10%的用于回购社区LPG代币的费用。</text>
+				</view>
+				<view v-if="isG" class="infoBox">
+					<text>详情明细请至共建奖励页面查看。</text>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -198,15 +207,19 @@
 
 <script>
 	import dataCenterTable from '../tickets/dataCenterTable.vue'
+	import prizeDataTable from '../tickets/prizeDataTable.vue'
 	export default {
 		components: {
-			dataCenterTable
+			dataCenterTable,
+			prizeDataTable
 		},
 		data() {
 			return {
 				name: 'ticketDataCenter',
 				select: 'L',
 				hdTableType: 1,
+				hdTable3Title: '',
+				hdTable3Value: '',
 				lotteryRecords: [
 				],
 				lotteryDetail: {},
@@ -226,6 +239,20 @@
 				  raffleStatusList: [
 					0
 				  ]
+				},
+				isAllTable: false,
+				isPrizeTable: false,
+				isE: false,
+				isF: false,
+				isG: false,
+				showM: true,
+				prizeData: [],
+				prizeRuleForm: {
+				  page: 1,
+				  pageSize: 30,
+				  rafflePhase: null,
+				  raffleRecordId: null,
+				  winLevel: null
 				}
 			}
 		},
@@ -238,14 +265,63 @@
 			getTabDetail(i) {
 				this.queryRaffleActivityDetail(2, i.id)
 				this.hdTableType = 2
+				this.prizeRuleForm.rafflePhase = i.rafflePhase
+				this.prizeRuleForm.raffleRecordId = i.rafflePhase
 			},
-			getPointDetail(type) {
-				console.log('--当期数值详情--', type)
+			getPointDetail(type = null, title, value = null) {
+				this.prizeData = []
+				this.prizeRuleForm.page = 1
+				this.hdTable3Title = title
+				this.hdTable3Value = value
+				this.isAllTable = false
+				this.isPrizeTable = false
+				this.isE = false
+				this.isF = false
+				this.isG = false
+				
+				if (type == 'ALL') {
+					// 支付抽奖券总数
+					this.isAllTable = true
+				} else if (type == 'A') {
+					// 1等奖
+					this.prizeRuleForm.winLevel = 1
+					this.isPrizeTable = true
+					this.queryRaffleDcRecordWin()
+				} else if (type == 'B') {
+					// 2等奖
+					this.prizeRuleForm.winLevel = 2
+					this.isPrizeTable = true
+					this.queryRaffleDcRecordWin()
+				} else if (type == 'C') {
+					// 3等奖
+					this.prizeRuleForm.winLevel = 3
+					this.isPrizeTable = true
+					this.queryRaffleDcRecordWin()
+				} else if (type == 'D') {
+					// 4等奖
+					this.prizeRuleForm.winLevel = 4
+					this.isPrizeTable = true
+					this.queryRaffleDcRecordWin()
+				} else if (type == 'E') {
+					this.isE = true
+					this.showM = false
+				} else if (type == 'F') {
+					this.isF = true
+					this.showM = false
+				} else if (type == 'G') {
+					this.isG = true
+					this.showM = false
+				}
+				
 				this.hdTableType = 3
 			},
 			nowTableGetMore(bol) {
 				this.ruleForm.page ++
 				this.queryRaffleDcRecordPaged(true)
+			},
+			prizeTableGetMore(bol) {
+				this.prizeRuleForm.page ++
+				this.queryRaffleDcRecordWin(true)
 			},
 			searchFn() {
 				this.ruleForm.page = 1
@@ -312,7 +388,25 @@
 					if (res.code === 0) {
 						let list = res.data.list
 						for(let i=0; i<list.length; i++) {
-							list[i].raffleNumberStr = list[i].raffleNumber.join(',')
+							if (list[i].raffleNumber) {
+								list[i].raffleNumberStr = list[i].raffleNumber.join(',')
+							}
+							// let arr = null
+							// if (list[i].raffleNumber && list[i].winningNumber) {
+							// 	arr = list[i].winningNumber.filter(item => list[i].raffleNumber.indexOf(item) > 1)
+							// }
+							// const RaffleList = list[i].raffleNumber
+							// let raffleArr = []
+							// for (let j=0; j<RaffleList.length; j++) {
+							// 	for (let k=0; k<arr.length; k++) {
+							// 		if(RaffleList[j] == arr[k]) {
+							// 			raffleArr.push({ num: RaffleList[j], isWin: true})
+							// 		} else {
+							// 			raffleArr.push({ num: RaffleList[j], isWin: false})
+							// 		}
+							// 	}
+							// }
+							// list[i].raffleArr = raffleArr
 						}
 						console.log('列表---', list)
 						if (more) {
@@ -322,7 +416,31 @@
 						}
 					}
 				})
-			}
+			},
+			queryRaffleDcRecordWin(more = false) {
+				this.$u.api.raffleBusinessApis.queryRaffleDcRecordWin({
+					winLevel: this.prizeRuleForm.winLevel,
+					rafflePhase: this.prizeRuleForm.rafflePhase,
+					raffleRecordId: this.prizeRuleForm.raffleRecordId,
+					page: this.prizeRuleForm.page,
+					pageSize: this.prizeRuleForm.pageSize,
+				}).then(res => {
+					if (res.code === 0) {
+						let list = res.data.list
+						for(let i=0; i<list.length; i++) {
+							if (list[i].raffleNumber) {
+								list[i].raffleNumberStr = list[i].raffleNumber.join(',')
+							}
+						}
+						console.log('详情列表---', list)
+						if (more) {
+							this.prizeData = this.prizeData.concat(list)
+						} else {
+							this.prizeData = list
+						}
+					}
+				})
+			},
 		}
 	}
 </script>
@@ -545,7 +663,6 @@
 		.hdTable3Top{
 			width: 100%;
 			height: 160rpx;
-			background-color: papayawhip;
 			display: flex;
 			align-items: center;
 			.hdTable3TopL{
@@ -566,10 +683,19 @@
 				height: 120rpx;
 				display: flex;
 				flex-direction: column;
-				justify-content: space-around;
+				justify-content: center;
 				color: #FFFFFF;
 				font-size: 14px;
 			}
+		}
+		.infoBox{
+			width: 90%;
+			height: 60rpx;
+			margin-left: 5%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #eeeeee;
 		}
 	}
 }
