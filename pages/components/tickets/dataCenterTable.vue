@@ -1,10 +1,10 @@
 <template>
 	<view class="leftDataBot">
 		<view v-if="tableData.length > 0" class="tableTh">
-			<view class="th" style="width: 170rpx;"><text>支付时间</text></view>
-			<view class="th" style="width: 170rpx;"><text>昵称</text></view>
-			<view class="th" style="width: 200rpx;"><text>选号</text></view>
-			<view class="th" style="width: 180rpx;border-right: 1px solid #666666;"><text>支付抽奖券数量</text></view>
+			<view class="th" style="width: 170rpx;"><text>{{$t('ticketDataCenter.text38')}}</text></view>
+			<view class="th" style="width: 170rpx;"><text>{{$t('ticketDataCenter.text39')}}</text></view>
+			<view class="th" style="width: 200rpx;"><text>{{$t('ticketDataCenter.text40')}}</text></view>
+			<view class="th" style="width: 180rpx;border-right: 1px solid #666666;"><text>{{$t('ticketDataCenter.text41')}}</text></view>
 		</view>
 		<scroll-view v-if="tableData.length > 0" scroll-y="true" style="width: 718rpx; border: 1px solid #666666;" :style="{'height': height}">
 			<view v-for="(item, index) in tableData" class="tableList" :key="index">
@@ -15,10 +15,10 @@
 			</view>
 		</scroll-view>
 		<view v-if="tableData.length > 0" class="seeMore" @click="getMore">
-			<text>查看更多</text>
+			<text>{{$t('ticketDataCenter.text42')}}</text>
 		</view>
 		<view v-if="tableData.length == 0" class="noData">
-			<text>无数据</text>
+			<text>{{$t('ticketDataCenter.text43')}}</text>
 		</view>
 	</view>
 </template>

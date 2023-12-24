@@ -2,30 +2,30 @@
 	<view>
 		<view class="navBox">
 			<view class="navItem" :style="{'backgroundColor' : select=='L'?'':'#333333'}" @click="selectNav('L')">
-				<text>即时数据</text>
+				<text>{{$t('ticketDataCenter.text1')}}</text>
 			</view>
 			<view class="navItem" :style="{'backgroundColor' : select=='R'?'':'#333333'}" @click="selectNav('R')">
-				<text>历史数据</text>
+				<text>{{$t('ticketDataCenter.text2')}}</text>
 			</view>
 		</view>
 		<view v-if="select=='L'" class="leftData">
 			<view class="leftDataTop">
 				<view class="leftDataTopLeft">
-					<text class="dataTopLeftItem">第203期</text>
-					<text class="dataTopLeftItem">参与本期抽奖人数：12345</text>
-					<text class="dataTopLeftItem">已支付抽奖券数量：123450</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text3',{n: '1'})}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text4',{n: '123456'})}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text5',{n: '123456'})}}</text>
 					<view class="searchBox">
-						<input v-model="ruleForm.accountName" type="text" placeholder="请输入昵称">
+						<input v-model="ruleForm.accountName" type="text" :placeholder="$t('ticketDataCenter.text6')">
 						<view class="btn" @click="searchFn">
-							<text>查询</text>
+							<text>{{$t('ticketDataCenter.text7')}}</text>
 						</view>
 					</view>
 				</view>
 				<view class="leftDataTopRight">
-					<text class="dataTopLeftItem">获得共建奖励人数:123456</text>
-					<text class="dataTopLeftItem">获得共建奖励LPG数量:123456</text>
-					<text class="dataTopLeftItem">获得共建奖励x2LPG数量:123456</text>
-					<text class="dataTopLeftItem">获得共建奖励x3LPG数量:123456</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text8',{n: '1'})}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text9',{n: '1'})}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text10',{n: '1'})}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text11',{n: '1'})}}</text>
 				</view>
 			</view>
 			<data-center-table :tableData="nowData" height="400rpx" @getMore="nowTableGetMore"></data-center-table>
@@ -36,7 +36,7 @@
 				<view class="tableRow" v-for="(item, index) in lotteryRecords" :key="index">
 					<view class="tableRowL">
 						<text class="date">{{item.drawTime.substring(0, 10)}}</text>
-						<text class="num">第{{item.rafflePhase}}期</text>
+						<text class="num">{{$t('ticketDataCenter.text3',{n: item.rafflePhase})}}</text>
 					</view>
 					<view class="tableRowR" @click="getTabDetail(item)">
 						<text style="margin-top: -8rpx;">+</text>
@@ -51,17 +51,17 @@
 						<text class="goTable1" @click="hdTableType = 1"></text>
 					</view>
 					<view class="hdTable2TopR">
-						<text>期数：第{{lotteryDetail.rafflePhase}}期</text>
-						<text>开奖号码：{{ changeNum(lotteryDetail.winningNumber) }}</text>
+						<text>{{$t('ticketDataCenter.text12',{n: lotteryDetail.rafflePhase})}}</text>
+						<text>{{$t('ticketDataCenter.text13',{n: changeNum(lotteryDetail.winningNumber)})}}</text>
 					</view>
 				</view>
 				<view class="hdTable2">
 					<view class="table-row">
 						<view class="table-col">
 							<view class="table-col-top">
-								<text>支付抽奖券</text>
-								<text>总数量</text>
-								<view class="sanjiao" @click="getPointDetail('ALL', '支付抽奖券总数量', lotteryDetail.raffleTicketCount)"></view>
+								<text>{{$t('ticketDataCenter.text14')}}</text>
+								<text>{{$t('ticketDataCenter.text15')}}</text>
+								<view class="sanjiao" @click="getPointDetail('ALL', $t('ticketDataCenter.text16'), lotteryDetail.raffleTicketCount)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.raffleTicketCount}}</text>
@@ -69,9 +69,9 @@
 						</view>
 						<view class="table-col table-col-min">
 							<view class="table-col-top">
-								<text>1等奖</text>
-								<text>奖励总数</text>
-								<view class="sanjiao" @click="getPointDetail('A', '1等奖奖励总数', lotteryDetail.prize1)"></view>
+								<text>{{$t('ticketDataCenter.text17')}}</text>
+								<text>{{$t('ticketDataCenter.text18')}}</text>
+								<view class="sanjiao" @click="getPointDetail('A', $t('ticketDataCenter.text19'), lotteryDetail.prize1)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize1}}</text>
@@ -79,9 +79,9 @@
 						</view>
 						<view class="table-col">
 							<view class="table-col-top">
-								<text>2等奖</text>
-								<text>奖励总数</text>
-								<view class="sanjiao" @click="getPointDetail('B', '2等奖奖励总数', lotteryDetail.prize2)"></view>
+								<text>{{$t('ticketDataCenter.text20')}}</text>
+								<text>{{$t('ticketDataCenter.text18')}}</text>
+								<view class="sanjiao" @click="getPointDetail('B', $t('ticketDataCenter.text21'), lotteryDetail.prize2)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize2}}</text>
@@ -91,9 +91,9 @@
 					<view class="table-row">
 						<view class="table-col">
 							<view class="table-col-top">
-								<text>3等奖</text>
-								<text>奖励总数</text>
-								<view class="sanjiao" @click="getPointDetail('C', '3等奖奖励总数', lotteryDetail.prize3)"></view>
+								<text>{{$t('ticketDataCenter.text22')}}</text>
+								<text>{{$t('ticketDataCenter.text18')}}</text>
+								<view class="sanjiao" @click="getPointDetail('C', $t('ticketDataCenter.text23'), lotteryDetail.prize3)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize3}}</text>
@@ -101,9 +101,9 @@
 						</view>
 						<view class="table-col table-col-min">
 							<view class="table-col-top">
-								<text>4等奖</text>
-								<text>奖励总数</text>
-								<view class="sanjiao" @click="getPointDetail('D', '4等奖奖励总数', lotteryDetail.prize4)"></view>
+								<text>{{$t('ticketDataCenter.text24')}}</text>
+								<text>{{$t('ticketDataCenter.text18')}}</text>
+								<view class="sanjiao" @click="getPointDetail('D', $t('ticketDataCenter.text25'), lotteryDetail.prize4)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize4}}</text>
@@ -111,7 +111,7 @@
 						</view>
 						<view class="table-col">
 							<view class="table-col-top">
-								<text>本期余额</text>
+								<text>{{$t('ticketDataCenter.text26')}}</text>
 								<view class="sanjiao" @click="getPointDetail('E')"></view>
 							</view>
 							<view class="table-col-bot">
@@ -122,7 +122,7 @@
 					<view class="table-row">
 						<view class="table-col">
 							<view class="table-col-top">
-								<text>上期余额</text>
+								<text>{{$t('ticketDataCenter.text27')}}</text>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.lastAssignableBambooCount}}</text>
@@ -130,8 +130,8 @@
 						</view>
 						<view class="table-col table-col-min">
 							<view class="table-col-top">
-								<text>兑换LPG的</text>
-								<text>竹子数量</text>
+								<text>{{$t('ticketDataCenter.text28')}}</text>
+								<text>{{$t('ticketDataCenter.text29')}}</text>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.lpgBambooCount}}</text>
@@ -139,8 +139,8 @@
 						</view>
 						<view class="table-col">
 							<view class="table-col-top">
-								<text>共建奖励等</text>
-								<text>支付数量</text>
+								<text>{{$t('ticketDataCenter.text30')}}</text>
+								<text>{{$t('ticketDataCenter.text31')}}</text>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.activityBambooCount}}</text>
@@ -150,7 +150,7 @@
 					<view class="table-row">
 						<view class="table-col">
 							<view class="table-col-top">
-								<text>总余额</text>
+								<text>{{$t('ticketDataCenter.text32')}}</text>
 								<view class="sanjiao" @click="getPointDetail('F')"></view>
 							</view>
 							<view class="table-col-bot">
@@ -159,8 +159,8 @@
 						</view>
 						<view class="table-col table-col-min">
 							<view class="table-col-top">
-								<text>获得共建奖励的</text>
-								<text>LPG数量</text>
+								<text>{{$t('ticketDataCenter.text33')}}</text>
+								<text>{{$t('ticketDataCenter.text34')}}</text>
 								<view class="sanjiao" @click="getPointDetail('G')"></view>
 							</view>
 							<view class="table-col-bot">
@@ -188,17 +188,39 @@
 					<view v-if="!isE || !isF || !isG" class="hdTable3TopR">
 						<text>{{hdTable3Title}} <text v-if="showM">:</text> {{hdTable3Value}}</text>
 					</view>
+					<!-- <view class="allSearchBox">
+						<view class="btnGroup">
+							<view class="btnItem">
+								<text>查昵称</text>
+							</view>
+							<view class="btnItem">
+								<text>查选号</text>
+							</view>
+						</view>
+						<view class="nameSearchBox">
+							<input v-model="ruleForm.accountName" type="text" placeholder="请输入昵称">
+							<view class="btn" @click="searchFn">
+								<text>查询</text>
+							</view>
+						</view>
+						<view class="numSearchBox">
+							<input v-model="ruleForm.accountName" type="text" placeholder="请输入昵称">
+							<view class="btn" @click="searchFn">
+								<text>查询</text>
+							</view>
+						</view>
+					</view> -->
 				</view>
 				<prize-data-table v-if="isPrizeTable" :tableData="prizeData" height="350rpx" @getMore="prizeTableGetMore"></prize-data-table>
 				<data-center-table v-if="isAllTable" :tableData="nowData" height="400rpx" @getMore="nowTableGetMore"></data-center-table>
 				<view v-if="isE" class="infoBox">
-					<text>此余额为方便统计以支付的抽奖券为依据统计。</text>
+					<text>{{$t('ticketDataCenter.text35')}}</text>
 				</view>
 				<view v-if="isF" class="infoBox">
-					<text>此余额已扣除10%的社区维护费用和10%的用于回购社区LPG代币的费用。</text>
+					<text>{{$t('ticketDataCenter.text36')}}</text>
 				</view>
 				<view v-if="isG" class="infoBox">
-					<text>详情明细请至共建奖励页面查看。</text>
+					<text>{{$t('ticketDataCenter.text37')}}</text>
 				</view>
 			</view>
 		</view>
@@ -278,6 +300,7 @@
 				this.isE = false
 				this.isF = false
 				this.isG = false
+				this.showM = true
 				
 				if (type == 'ALL') {
 					// 支付抽奖券总数
