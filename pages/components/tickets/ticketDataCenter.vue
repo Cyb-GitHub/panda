@@ -11,9 +11,9 @@
 		<view v-if="select=='L'" class="leftData">
 			<view class="leftDataTop">
 				<view class="leftDataTopLeft">
-					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text3',{n: '1'})}}</text>
-					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text4',{n: '123456'})}}</text>
-					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text5',{n: '123456'})}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text3',{n: queryTotalData.currentRafflePhase })}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text4',{n: queryTotalData.currentRaffleCount })}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text5',{n: queryTotalData.currentRafflePayCount })}}</text>
 					<view class="searchBox">
 						<input v-model="ruleForm.accountName" type="text" :placeholder="$t('ticketDataCenter.text6')">
 						<view class="btn" @click="searchFn">
@@ -22,10 +22,10 @@
 					</view>
 				</view>
 				<view class="leftDataTopRight">
-					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text8',{n: '1'})}}</text>
-					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text9',{n: '1'})}}</text>
-					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text10',{n: '1'})}}</text>
-					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text11',{n: '1'})}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text8',{n: queryTotalData.currentRaffleRewardCount })}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text9',{n: queryTotalData.currentRaffleRewardLpgCount })}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text10',{n: queryTotalData.currentRaffleRewardX2LpgCount })}}</text>
+					<text class="dataTopLeftItem">{{$t('ticketDataCenter.text11',{n: queryTotalData.currentRaffleRewardX3LpgCount })}}</text>
 				</view>
 			</view>
 			<data-center-table :tableData="nowData" height="400rpx" @getMore="nowTableGetMore"></data-center-table>
@@ -275,6 +275,15 @@
 				  rafflePhase: null,
 				  raffleRecordId: null,
 				  winLevel: null
+				},
+				queryTotalData: {
+					currentRaffleCount: 0,
+					currentRafflePayCount: 0,
+					currentRafflePhase: 0,
+					currentRaffleRewardCount: 0,
+					currentRaffleRewardLpgCount: 0,
+					currentRaffleRewardX2LpgCount: 0,
+					currentRaffleRewardX3LpgCount: 0
 				}
 			}
 		},
@@ -282,6 +291,7 @@
 			this.queryRaffleActivityPaged(1, 30)
 			this.queryRaffleActivityPaged(2, 30)
 			this.queryRaffleDcRecordPaged()
+			this.raffleDcRecordQueryTotal()
 		},
 		methods: {
 			getTabDetail(i) {
@@ -366,6 +376,14 @@
 				} else {
 					return str
 				}
+			},
+			raffleDcRecordQueryTotal() {
+				this.$u.api.raffleBusinessApis.raffleDcRecordQueryTotal().then(res =>{
+					if (res.code === 0) {
+						console.log('-w-w-w-', res)
+						this.queryTotalData = res.data
+					}					
+				})
 			},
 			queryRaffleActivityPaged(status, pagesSize) {
 				this.$u.api.raffleBusinessApis.queryRaffleActivityPaged({

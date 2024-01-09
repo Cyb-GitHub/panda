@@ -74,6 +74,8 @@ const install = (Vue, vm) => {
 		queryRaffleActivityDetail: (params) => vm.$u.post(`/raffle/activity/query/detail`, params),
 		queryRaffleDcRecordPaged: (params) => vm.$u.post(`/raffle/dc/record/query/paged`, params),
 		queryRaffleDcRecordWin: (params) => vm.$u.post(`/raffle/dc/record/query/win`, params),
+		raffleDcRecordQueryTotal: (params) => vm.$u.post(`/raffle/dc/record/query/total`, params),
+		raffleDcRecordQueryWinPaged: (params) => vm.$u.post(`/raffle/dc/record/query/win/paged`, params),
 	}
 	const vote ={
 		queryVoteActivityPaged: (params) => vm.$u.post(`/vote/activity/query/paged`, params),
