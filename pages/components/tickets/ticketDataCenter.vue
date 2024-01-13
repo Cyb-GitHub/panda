@@ -61,7 +61,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text14')}}</text>
 								<text>{{$t('ticketDataCenter.text15')}}</text>
-								<view class="sanjiao" @click="getPointDetail('ALL', $t('ticketDataCenter.text16'), lotteryDetail.raffleTicketCount)"></view>
+								<view class="sanjiao" @click="getPointDetail('ALL', $t('ticketDataCenter.text16'), lotteryDetail.rafflePhase, lotteryDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.raffleTicketCount}}</text>
@@ -71,7 +71,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text17')}}</text>
 								<text>{{$t('ticketDataCenter.text18')}}</text>
-								<view class="sanjiao" @click="getPointDetail('A', $t('ticketDataCenter.text19'), lotteryDetail.prize1)"></view>
+								<view class="sanjiao" @click="getPointDetail('A', $t('ticketDataCenter.text19'), lotteryDetail.prize1, getPointDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize1}}</text>
@@ -81,7 +81,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text20')}}</text>
 								<text>{{$t('ticketDataCenter.text18')}}</text>
-								<view class="sanjiao" @click="getPointDetail('B', $t('ticketDataCenter.text21'), lotteryDetail.prize2)"></view>
+								<view class="sanjiao" @click="getPointDetail('B', $t('ticketDataCenter.text21'), lotteryDetail.prize2, getPointDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize2}}</text>
@@ -93,7 +93,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text22')}}</text>
 								<text>{{$t('ticketDataCenter.text18')}}</text>
-								<view class="sanjiao" @click="getPointDetail('C', $t('ticketDataCenter.text23'), lotteryDetail.prize3)"></view>
+								<view class="sanjiao" @click="getPointDetail('C', $t('ticketDataCenter.text23'), lotteryDetail.prize3, getPointDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize3}}</text>
@@ -103,7 +103,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text24')}}</text>
 								<text>{{$t('ticketDataCenter.text18')}}</text>
-								<view class="sanjiao" @click="getPointDetail('D', $t('ticketDataCenter.text25'), lotteryDetail.prize4)"></view>
+								<view class="sanjiao" @click="getPointDetail('D', $t('ticketDataCenter.text25'), lotteryDetail.prize4, getPointDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize4}}</text>
@@ -258,6 +258,7 @@
 				  pageSize: 30,
 				  raffleActivityStatus: 0,
 				  raffleNumber: null,
+				  rafflePhase: null,
 				  raffleStatusList: [
 					0
 				  ]
@@ -274,7 +275,8 @@
 				  pageSize: 30,
 				  rafflePhase: null,
 				  raffleRecordId: null,
-				  winLevel: null
+				  winLevel: null,
+				  rafflePhase: null
 				},
 				queryTotalData: {
 					currentRaffleCount: 0,
@@ -300,7 +302,7 @@
 				this.prizeRuleForm.rafflePhase = i.rafflePhase
 				this.prizeRuleForm.raffleRecordId = i.rafflePhase
 			},
-			getPointDetail(type = null, title, value = null) {
+			getPointDetail(type = null, title, value = null, data = null) {
 				this.prizeData = []
 				this.prizeRuleForm.page = 1
 				this.hdTable3Title = title
@@ -315,24 +317,31 @@
 				if (type == 'ALL') {
 					// 支付抽奖券总数
 					this.isAllTable = true
+					this.ruleForm.rafflePhase = data.rafflePhase
+					this.ruleForm.accountName = null
+					this.searchFn()
 				} else if (type == 'A') {
 					// 1等奖
 					this.prizeRuleForm.winLevel = 1
+					this.prizeRuleForm.rafflePhase = data.rafflePhase
 					this.isPrizeTable = true
 					this.queryRaffleDcRecordWin()
 				} else if (type == 'B') {
 					// 2等奖
 					this.prizeRuleForm.winLevel = 2
+					this.prizeRuleForm.rafflePhase = data.rafflePhase
 					this.isPrizeTable = true
 					this.queryRaffleDcRecordWin()
 				} else if (type == 'C') {
 					// 3等奖
 					this.prizeRuleForm.winLevel = 3
+					this.prizeRuleForm.rafflePhase = data.rafflePhase
 					this.isPrizeTable = true
 					this.queryRaffleDcRecordWin()
 				} else if (type == 'D') {
 					// 4等奖
 					this.prizeRuleForm.winLevel = 4
+					this.prizeRuleForm.rafflePhase = data.rafflePhase
 					this.isPrizeTable = true
 					this.queryRaffleDcRecordWin()
 				} else if (type == 'E') {
@@ -362,6 +371,9 @@
 			},
 			selectNav(nav) {
 				this.select = nav
+				this.hdTableType = 1
+				this.ruleForm.rafflePhase = null
+				this.searchFn()
 			},
 			changeNum(str) {
 				if (str) {
@@ -421,6 +433,7 @@
 					enumRaffleActivityStatus: this.ruleForm.enumRaffleActivityStatus,
 					enumRaffleStatusList: this.ruleForm.enumRaffleStatusList,
 					raffleNumber: this.ruleForm.raffleNumber,
+					rafflePhase: this.ruleForm.rafflePhase,
 					// raffleStatusList: [2],
 					// raffleActivityStatus: 1,
 					page: this.ruleForm.page,
