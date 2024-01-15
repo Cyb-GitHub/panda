@@ -71,7 +71,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text17')}}</text>
 								<text>{{$t('ticketDataCenter.text18')}}</text>
-								<view class="sanjiao" @click="getPointDetail('A', $t('ticketDataCenter.text19'), lotteryDetail.prize1, getPointDetail)"></view>
+								<view class="sanjiao" @click="getPointDetail('A', $t('ticketDataCenter.text19'), lotteryDetail.prize1, lotteryDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize1}}</text>
@@ -81,7 +81,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text20')}}</text>
 								<text>{{$t('ticketDataCenter.text18')}}</text>
-								<view class="sanjiao" @click="getPointDetail('B', $t('ticketDataCenter.text21'), lotteryDetail.prize2, getPointDetail)"></view>
+								<view class="sanjiao" @click="getPointDetail('B', $t('ticketDataCenter.text21'), lotteryDetail.prize2, lotteryDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize2}}</text>
@@ -93,7 +93,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text22')}}</text>
 								<text>{{$t('ticketDataCenter.text18')}}</text>
-								<view class="sanjiao" @click="getPointDetail('C', $t('ticketDataCenter.text23'), lotteryDetail.prize3, getPointDetail)"></view>
+								<view class="sanjiao" @click="getPointDetail('C', $t('ticketDataCenter.text23'), lotteryDetail.prize3, lotteryDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize3}}</text>
@@ -103,7 +103,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text24')}}</text>
 								<text>{{$t('ticketDataCenter.text18')}}</text>
-								<view class="sanjiao" @click="getPointDetail('D', $t('ticketDataCenter.text25'), lotteryDetail.prize4, getPointDetail)"></view>
+								<view class="sanjiao" @click="getPointDetail('D', $t('ticketDataCenter.text25'), lotteryDetail.prize4, lotteryDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.prize4}}</text>
