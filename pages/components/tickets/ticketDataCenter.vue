@@ -61,7 +61,7 @@
 							<view class="table-col-top">
 								<text>{{$t('ticketDataCenter.text14')}}</text>
 								<text>{{$t('ticketDataCenter.text15')}}</text>
-								<view class="sanjiao" @click="getPointDetail('ALL', $t('ticketDataCenter.text16'), lotteryDetail.rafflePhase, lotteryDetail)"></view>
+								<view class="sanjiao" @click="getPointDetail('ALL', $t('ticketDataCenter.text16'), lotteryDetail.raffleTicketCount, lotteryDetail)"></view>
 							</view>
 							<view class="table-col-bot">
 								<text>{{lotteryDetail.raffleTicketCount}}</text>
